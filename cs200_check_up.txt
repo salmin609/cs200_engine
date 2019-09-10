@@ -1,0 +1,17 @@
+in week2 (until September 15) - Implement a Math library.
+in week3 (until September 22) - Implement Window creation with the following features
+in week4 (until September 29) - week 6(until October 6) - Implement 2D Graphics Support
+4 - Must implement an interface that hides the graphics API specifics as much as possible.
+5 - simple shapes (Ellipses...) , Hierarchical transforms that provide Scale, Rotation, and Translation, Texturing
+6 - Text Rendering
+in week7 (until October 13) - Screen-shots, 2D Camera
+in week 8(until October 20) - Create a Tech Demo that showcases all of these features // Implementing C grade
+in week 9(until October 27) - MidTerm
+in week 10(until November 3) - To earn a B grade
+in week 11(until November 10) - To earn a B grade
+in week 12(until November 17) - To earn an A grade
+in week 13(until November 24) - To earn an A grade
+in week 14(until December 1) - To earn an A grade
+in week 15 -> Final~~~~
+
+Must implement an interface that hides the graphics API specifics as much as possible. ??
