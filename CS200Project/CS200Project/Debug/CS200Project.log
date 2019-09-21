@@ -1,0 +1,9 @@
+﻿  Application.cpp
+  main.cpp
+c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Window.cpp
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\window.cpp(51): error C2065: 'GWLP_USERDATA': undeclared identifier
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\window.cpp(51): error C3861: 'SetWindowLongPtr': identifier not found
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\window.cpp(153): error C2065: 'GWLP_USERDATA': undeclared identifier
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\window.cpp(153): error C3861: 'GetWindowLongPtr': identifier not found
+  Generating Code...

@@ -1,0 +1,5 @@
+﻿  Engine.cpp
+  main.cpp
+c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+  CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe

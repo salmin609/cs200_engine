@@ -14,4 +14,4 @@ in week 13(until November 24) - To earn an A grade
 in week 14(until December 1) - To earn an A grade
 in week 15 -> Final~~~~
 
-Must implement an interface that hides the graphics API specifics as much as possible. ??
+Must implement an interface that hides the graphics API specifics as much as possible.
