@@ -1,4 +1,15 @@
-﻿  Object.cpp
+﻿  Graphics.cpp
+c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(107): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(111): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(115): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(119): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(123): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(128): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(248): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(249): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+  Image.cpp
+  Object.cpp
 c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(66): warning C4305: '+=': truncation from 'double' to 'float'
 c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(71): warning C4305: '-=': truncation from 'double' to 'float'
@@ -31,4 +42,8 @@ c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.1
               T=Vertex
           ]
   c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.h(96): note: see reference to class template instantiation 'VertexBuffer<Vertex>' being compiled
+  Object_Manager.cpp
+c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  Generating Code...
+  LINK : C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe not found or not built by the last incremental link; performing full link
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe
