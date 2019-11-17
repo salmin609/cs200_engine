@@ -70,7 +70,7 @@ template <typename T>
 [[nodiscard]]constexpr  float angle_between(vector3<T> a, vector3<T> b) noexcept;
 
 #pragma warning(pop)
-#include "vector3.hpp"
+
 #include <cassert>
 #include <limits>
 #include "vector3.inl"

@@ -85,7 +85,6 @@ constexpr vector2<T>             rotate_by(float angle_in_radians, vector2<T> v)
 
 
 #pragma warning(pop)
-
-#include "vector2.inl"
 #include <cassert>
 #include <limits>
+#include "vector2.inl"

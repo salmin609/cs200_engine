@@ -2,19 +2,10 @@
 
 #include <memory>
 #include <functional>
+#include "Win32OS.h"
+
 
 struct PlatformImpl;
-enum Keyboard
-{
-    W, A, S, D,
-    None
-};
-
-enum MouseButtons
-{
-    Left,
-    Right
-};
 
 class Window
 {
@@ -27,9 +18,15 @@ public:
     void PollEvents();
     void CloseWindow();
     bool ShouldQuit();
-
-    void SetOnKeyPressed(std::function<void(Keyboard)> callback);
-    void SetOnKeyReleased(std::function<void(Keyboard)> callback);
+    void Toggle_Full_Screen();
+    void Toggle_Vertical_Sync(bool toggle);
+    void Set_Handle_Window(HWND set);
+    HWND Get_Hnalde_Window()
+    {
+        return handle_window;
+    }
 private:
     std::unique_ptr<PlatformImpl> pimpl{};
+    HWND handle_window;
+    bool is_destroyed = false;
 };

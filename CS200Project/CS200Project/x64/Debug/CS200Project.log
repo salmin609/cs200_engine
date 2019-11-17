@@ -1,5 +1,11 @@
-﻿  Engine.cpp
-  main.cpp
+﻿  Graphics.cpp
 c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(101): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(105): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(109): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(113): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(117): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(122): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(242): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
+c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(243): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe

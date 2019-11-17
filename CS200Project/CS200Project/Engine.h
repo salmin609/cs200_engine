@@ -1,4 +1,6 @@
 #pragma once
+#include "Graphics.h"
+
 
 class Engine
 {
@@ -9,11 +11,14 @@ public:
     void Init();
     void Update();
     void Close();
-
+    void Render_Frame();
+    void End_Frame();
+    void Clear_Buffer(float red, float blue, float green);
     bool Get_Is_Finish()
     {
         return is_finish;
     }
 private:
-    bool is_finish = true;
+    bool is_finish = false;
+    //Graphics graphics;
 };

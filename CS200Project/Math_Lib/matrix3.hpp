@@ -41,7 +41,8 @@ constexpr matrix3<T> operator*(const matrix3<T>& m1, const matrix3<T>& m2) noexc
 template <typename T>
 constexpr void    operator*=(matrix3<T>& m1, const matrix3<T>& m2) noexcept;
 template <typename T>
-constexpr vector3<T> operator*(const matrix3<T>& m, matrix3<T> v) noexcept;
+constexpr vector3<T> operator*(const matrix3<T>& m, vector3<T> v) noexcept;
+
 
 template <typename T>
 struct vector2;

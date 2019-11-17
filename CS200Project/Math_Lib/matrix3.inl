@@ -94,7 +94,7 @@ constexpr void    operator*=(matrix3<T>& m1, const matrix3<T>& m2) noexcept
     m1 = m1 * m2;
 }
 template <typename T>
-constexpr vector3<T> operator*(const matrix3<T>& m, matrix3<T> v) noexcept
+constexpr vector3<T> operator*(const matrix3<T>& m, vector3<T> v) noexcept
 {
     vector3<T> my_vec;
     my_vec.x = ((m.column0.x * v.x) + (m.column1.x * v.y) + (m.column2.x * v.z));
@@ -103,6 +103,8 @@ constexpr vector3<T> operator*(const matrix3<T>& m, matrix3<T> v) noexcept
 
     return my_vec;
 }
+
+
 template <typename T>
 constexpr matrix3<T> MATRIX3::transpose(const matrix3<T>& m) noexcept
 {
