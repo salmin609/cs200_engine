@@ -1,10 +1,11 @@
 #include "Object.h"
 #include "Input.h"
 #include "Object_Manager.h"
+#include "angles.hpp"
 
 static int indices_count = 0;
 
-Object::Object(Shape shape) :transform(MATRIX3::build_identity<float>()), scale(0, 0), translation(0, 0), rotation(0, 0), shape(shape)
+Object::Object(Shape shape) :transform(MATRIX3::build_identity<float>()), scale(1, 1), translation(0, 0), rotation(0, 0), shape(shape)
 {
     if(shape == Rectangle)
     {
@@ -80,6 +81,32 @@ void Object::Update()
             this->translation.x += 0.01;
             Update_World_Matrix();
         }
+        if(input.Is_Key_Pressed(Keyboard::NUM_1))
+        {
+            this->scale.x += 0.01;
+            Update_World_Matrix();
+        }
+        if(input.Is_Key_Pressed(Keyboard::NUM_2))
+        {
+            this->scale.x -= 0.01;
+            Update_World_Matrix();
+        }
+        if (input.Is_Key_Pressed(Keyboard::NUM_3))
+        {
+            this->scale.y -= 0.01;
+            Update_World_Matrix();
+        }
+        if (input.Is_Key_Pressed(Keyboard::NUM_4))
+        {
+            this->scale.y += 0.01;
+            Update_World_Matrix();
+        }
+        if(input.Is_Key_Pressed(Keyboard::K))
+        {
+            this->rotation.x += 0.01;
+            this->rotation.y += 0.01;
+            Update_World_Matrix();
+        }
     }
 }
 
@@ -90,27 +117,88 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
     this->device_context = device_context;
     this->texture = texture;
     this->constant_buffer_vertex_shader = &constant_vertexshader;
-    this->shape = Rectangle;
-    Vertex v[] = 
+    this->scale = { 1,1 };
+    if(this->name == "rectangle")
     {
-            Vertex(-0.5f,  -0.5f, -0.5f, 0.0f, 1.0f), //FRONT Bottom Left   - [0]
-            Vertex(-0.5f,   0.5f, -0.5f, 0.0f, 0.0f), //FRONT Top Left      - [1]
-            Vertex(0.5f,   0.5f, -0.5f, 1.0f, 0.0f), //FRONT Top Right     - [2]
-            Vertex(0.5f,  -0.5f, -0.5f, 1.0f, 1.0f)
-    };
+        this->shape = Rectangle;
+        Vertex v[] =
+        {
+                Vertex(-0.5f,  -0.5f, -0.5f, 0.0f, 1.0f), //FRONT Bottom Left   - [0]
+                Vertex(-0.5f,   0.5f, -0.5f, 0.0f, 0.0f), //FRONT Top Left      - [1]
+                Vertex(0.5f,   0.5f, -0.5f, 1.0f, 0.0f), //FRONT Top Right     - [2]
+                Vertex(0.5f,  -0.5f, -0.5f, 1.0f, 1.0f)
+        };
 
-    HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
+        HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
 
-    DWORD indices[] =
+        DWORD indices[] =
+        {
+            0,1,2,
+            0,2,3,
+        };
+        hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+    }
+
+    if (this->name == "triangle")
     {
-        0,1,2,
-        0,2,3,
-    };
-    hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+        this->shape = Triangle;
 
+
+        Vertex v[] =
+        {
+                Vertex(2.0,  0.5f, 0.0f, 0.5f, 0.0f), //FRONT Bottom Left   - [0]
+                Vertex(1.5f,   -0.5f, 0.0f, 0.0f, 1.0f), //FRONT Top Left      - [1]
+                Vertex(2.5f,   -0.5f, 0.0f, 1.0f, 1.0f), //FRONT Top Right     - [2]
+        };
+
+        HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
+
+        DWORD indices[] =
+        {
+            0,1,2,
+        };
+        hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+    }
+
+    if(this->name == "circle")
+    {
+        this->shape = Circle;
+
+        Vertex* v = new Vertex[31];
+        v[0] = { 0,0,0 };
+
+        float theta;
+
+        for(int i = 1; i < 30; i++)
+        {
+            theta = (TWO_PI * i) / static_cast<float>(30);
+            v[i] = { 1 * cosf(theta), 1 * sinf(theta), 0,1,0 };
+        }
+
+
+        HRESULT hr = this->vertex_buffer.Initialize(this->device, v, 31);
+
+        DWORD* indices = new DWORD[90];
+
+        int incre_1 = 1;
+        int incre_2 = 2;
+
+        for(int i = 0; i < 84; i += 3)
+        {
+            indices[i] = 0;
+            indices[i + 1] = incre_1;
+            indices[i + 2] = incre_2;
+            incre_1++;
+            incre_2++;
+        }
+        indices[84] = 0;
+        indices[85] = 29;
+        indices[86] = 1;
+
+        hr = this->index_buffer.Initialize(this->device, indices, 87);
+    }
 
     this->Update_World_Matrix();
-    Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(this);
     return true;
 }
 
@@ -135,7 +223,7 @@ void Object::Draw(const XMMATRIX& view_projection_matrix)
 
 void Object::Update_World_Matrix()
 {
-
-    this->world_transform = DirectX::XMMatrixTranslation(translation.x, translation.y, 0);
+    this->world_transform = DirectX::XMMatrixIdentity();
+    this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0) * DirectX::XMMatrixRotationRollPitchYawFromVector({rotation.x, rotation.y}) * DirectX::XMMatrixScaling(scale.x, scale.y, 0);
     
 }

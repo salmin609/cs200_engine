@@ -23,7 +23,9 @@ public:
     {
         None = -1,
         Triangle = 0,
-        Rectangle = 1
+        Rectangle = 1,
+        Line = 2,
+        Circle = 3
     };
     Object()
     {

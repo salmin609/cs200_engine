@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="angles.hpp" />
     <ClInclude Include="matrix3.hpp" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
