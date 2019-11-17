@@ -39,7 +39,7 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 
 void Graphics::Render_Frame()
 {
-    float back_ground[] = { 0.0f, 0.0f, 0.0f, 1.0f };
+    float back_ground[] = { 1.0f, 1.0f, 1.0f, 1.0f };
     this->device_context->ClearRenderTargetView(this->render_target_view.Get(), back_ground);
     this->device_context->ClearDepthStencilView(this->depth_stencil_view.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
     this->device_context->IASetInputLayout(this->vertex_shader.Get_Input_Layout());
@@ -54,7 +54,13 @@ void Graphics::Render_Frame()
 
     UINT stride = sizeof(Vertex);
     UINT offset = 0;
-    this->obj.Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
+
+    for(int i = 0 ; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
+    {
+        Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
+    }
+
+    //this->obj.Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
 
     sprite_batch->Begin();
 
@@ -361,61 +367,6 @@ bool Graphics::InitializeShaders()
 
 bool Graphics::Initialize_Scene()
 {
-/*
-    int size = Object_Manager::Get_ObjectManager()->Get_Obj_Container().size();
-    int vertex_count = 0;
-    for(int i = 0; i < size; i++)
-    {
-        vertex_count += Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Get_Vertex_Count();
-    }
-
-    Vertex* v = new Vertex[vertex_count];
-    std::vector<Object*> obj = Object_Manager::Get_ObjectManager()->Get_Obj_Container();
-    int incre = 0;
-    for(int i = 0; i < size; i++)
-    {
-        const int vertex_counts = obj[i]->Get_Vertex_Count();
-        
-        for(int j = 0; j < vertex_counts; j++)
-        {
-            v[incre + j] = obj[i]->Get_Vertex_Pointer()[j];
-        }
-        incre += obj[i]->Get_Vertex_Count();
-    }
-    const int array_size = vertex_count;
-
-    HRESULT hr = this->vertex_buffer.Initialize(this->device.Get(), v, array_size);
-
-    if (FAILED(hr))
-    {
-        std::cout << "fail to create vertex buffer" << std::endl;
-        return false;
-    }
-
-
-    int indices_count = 0;
-    for (int i = 0; i < size; i++)
-    {
-        indices_count += Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Get_Indices_Index_Count();
-    }
-
-    DWORD* indices = new DWORD[indices_count];
-
-    int indices_incre = 0;
-    for (int i = 0; i < size; i++)
-    {
-        const int index_count = obj[i]->Get_Indices_Index_Count();
-
-        for (int j = 0; j < index_count; j++)
-        {
-            indices[indices_incre + j] = obj[i]->Get_Indices_Pointer()[j];
-        }
-        indices_incre += obj[i]->Get_Indices_Index_Count();
-    }
-
-    hr = this->indices_buffer.Initialize(this->device.Get(), indices, indices_count);
-*/
-
     HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\dicksean.png", nullptr, my_texture.GetAddressOf());
 
     if (FAILED(hr))
@@ -437,16 +388,17 @@ bool Graphics::Initialize_Scene()
         std::cout << "fail to init constant buffer" << std::endl;
         return false;
     }
-    if(!obj.Initialize(this->device.Get(), this->device_context.Get(),this->my_texture.Get() , this->constant_buffer))
+    //if(!obj.Initialize(this->device.Get(), this->device_context.Get(),this->my_texture.Get() , this->constant_buffer))
+    //{
+    //    return false;
+    //}
+    for(int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
     {
-        return false;
+        Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
     }
-
 
     camera.Set_Position(0.0f, 0.0f, -2.f);
     camera.Set_Projection_Value(90.f, static_cast<float>(width) / static_cast<float>(height), 0.1f, 1000.f);
-
-
 
     return true;
 }

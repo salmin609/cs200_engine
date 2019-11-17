@@ -23,6 +23,18 @@ void Engine::Init()
 {
     application = Application::Get_Application();
 
+    Object* obj_first = new Object();
+    obj_first->Set_Name("rectangle");
+    Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_first);
+
+    Object* obj_second = new Object();
+    obj_second->Set_Name("triangle");
+    Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_second);
+
+    Object* obj_third = new Object();
+    obj_third->Set_Name("circle");
+    Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_third);
+
     application->Init();
     if (!Graphics::Get_Graphic()->Initialize(application->Get_Application()->Get_Window().Get_Hnalde_Window(), 800, 600))
     {
