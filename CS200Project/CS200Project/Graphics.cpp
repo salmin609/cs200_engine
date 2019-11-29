@@ -206,44 +206,14 @@ void Graphics::Camera_Movement()
 		for (int i = 0; i < height * width; i++)
 		{
 			Color4ub color_temp;
-			//color_temp.red = GetRValue(color[i]);
-			//color_temp.green = GetRValue(color[i]);
-			//color_temp.blue = GetRValue(color[i]);
 			color_temp.red = (color[i] & red_mask);
 			color_temp.green = (color[i] & green_mask) >> 8;
 			color_temp.blue = (color[i] & blue_mask) >> 16;
 			color_temp.alpha = 255;
 			convert_color[i] = color_temp;
-
-			
 		}
 		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
 		std::cout << "asd";
-
-		
-		/*std::vector<COLORREF> color;
-		std::vector<Color4ub> convert_color;
-		Color4ub temp;
-
-		for (int i = 0; i < height; i++)
-		{
-			for (int j = 0; j < width; j++)
-			{
-				color.push_back(GetPixel(handle_to_device_context, j, i));
-				convert_color.push_back(temp);
-			}
-		}
-
-		for (int i = 0; i < width * height; i++)
-		{
-			convert_color[i].red = GetRValue(color[i]);
-			convert_color[i].green = GetGValue(color[i]);
-			convert_color[i].blue = GetBValue(color[i]);
-			convert_color[i].alpha = 255;
-		}
-
-		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));*/
-
 	}
 
 }
