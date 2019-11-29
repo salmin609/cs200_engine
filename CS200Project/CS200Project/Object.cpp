@@ -165,17 +165,15 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Circle;
 
         Vertex* v = new Vertex[31];
-        v[0] = { 0,0,0 };
+        v[0] = { 0,0,0,0,0 };
 
         float theta;
 
         for(int i = 1; i < 30; i++)
         {
             theta = (TWO_PI * i) / static_cast<float>(30);
-            v[i] = { 1 * cosf(theta), 1 * sinf(theta), 0,1,0 };
+            v[i] = { 1 * cosf(theta), 1 * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
         }
-
-
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, 31);
 
         DWORD* indices = new DWORD[90];
@@ -194,7 +192,6 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         indices[84] = 0;
         indices[85] = 29;
         indices[86] = 1;
-
         hr = this->index_buffer.Initialize(this->device, indices, 87);
     }
 
@@ -224,6 +221,5 @@ void Object::Draw(const XMMATRIX& view_projection_matrix)
 void Object::Update_World_Matrix()
 {
     this->world_transform = DirectX::XMMatrixIdentity();
-    this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0) * DirectX::XMMatrixRotationRollPitchYawFromVector({rotation.x, rotation.y}) * DirectX::XMMatrixScaling(scale.x, scale.y, 0);
-    
+    this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0)* DirectX::XMMatrixRotationRollPitchYawFromVector({rotation.x, rotation.y}) * DirectX::XMMatrixScaling(scale.x, scale.y, 0);
 }

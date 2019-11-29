@@ -11,6 +11,7 @@
 #include "Camera.h"
 #include "Constant_Buffer.h"
 #include "Object.h"
+#include "GameFont.h"
 
 class Graphics
 {
@@ -74,4 +75,7 @@ private:
 
     Camera camera;
     Object obj;
+
+	GameFont* font;
+	GameFont* font_sec;
 };

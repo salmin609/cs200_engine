@@ -22,32 +22,32 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{3E928D08-3AC0-40BC-B8F6-40F41BCF6B8B}</ProjectGuid>
     <RootNamespace>CS200Project</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -152,9 +152,11 @@
   <ItemGroup>
     <ClCompile Include="Adapter_Reader.cpp" />
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Constant_Buffer.cpp" />
     <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="GameFont.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
@@ -163,21 +165,30 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Object_Manager.cpp" />
     <ClCompile Include="Shaders.cpp" />
+    <ClCompile Include="Text.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapter_Reader.h" />
     <ClInclude Include="Application.h" />
+    <ClInclude Include="BitmapFont.hpp" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Color4f.hpp" />
+    <ClInclude Include="Color4ub.hpp" />
     <ClInclude Include="Constant_Buffer.h" />
     <ClInclude Include="Constant_Buffer_Types.h" />
     <ClInclude Include="Engine.h" />
+    <ClInclude Include="GameFont.h" />
     <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Image.hpp" />
     <ClInclude Include="Index_Buffer.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="My_Window.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Object_Manager.h" />
     <ClInclude Include="Shaders.h" />
+    <ClInclude Include="Text.hpp" />
+    <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertex_Buffer.h" />
     <ClInclude Include="Win32OS.h" />

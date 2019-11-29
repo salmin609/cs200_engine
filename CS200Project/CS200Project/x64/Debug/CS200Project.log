@@ -1,49 +1,11 @@
 ﻿  Graphics.cpp
-c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(107): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(111): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(115): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(119): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(123): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(128): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(248): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\graphics.cpp(249): warning C4244: '=': conversion from 'int' to 'FLOAT', possible loss of data
-  Image.cpp
-  Object.cpp
-c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(66): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(71): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(76): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(81): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(86): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(91): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(96): warning C4305: '-=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(101): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(106): warning C4305: '+=': truncation from 'double' to 'float'
-c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(107): warning C4305: '+=': truncation from 'double' to 'float'
-c:\program files (x86)\microsoft visual studio\2017\community\vc\tools\msvc\14.16.27023\include\memory(2538): warning C4267: 'initializing': conversion from 'size_t' to '_Ty', possible loss of data
-          with
-          [
-              _Ty=UINT
-          ]
-  c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\vertex_buffer.h(47): note: see reference to function template instantiation 'std::unique_ptr<UINT,std::default_delete<_Ty>> std::make_unique<UINT,size_t,0>(size_t &&)' being compiled
-          with
-          [
-              _Ty=UINT
-          ]
-  c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\vertex_buffer.h(45): note: while compiling class template member function 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'
-          with
-          [
-              T=Vertex
-          ]
-  c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.cpp(132): note: see reference to function template instantiation 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)' being compiled
-          with
-          [
-              T=Vertex
-          ]
-  c:\users\salmin\desktop\cs200_engine\cs200project\cs200project\object.h(96): note: see reference to class template instantiation 'VertexBuffer<Vertex>' being compiled
-  Object_Manager.cpp
-c:\users\salmin\desktop\cs200_engine\cs200project\math_lib\matrix3.hpp(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  Generating Code...
-  LINK : C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe not found or not built by the last incremental link; performing full link
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(118,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(122,40): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(126,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(130,40): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(134,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(139,38): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(292,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(293,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe
