@@ -10,11 +10,11 @@ struct Vertex
     Vertex(float x, float y, float z = 0) : pos(x,y,z)
     {
     }
-    Vertex(float x, float y, float z, float u, float v, int slot = 0) : pos(x,y,z), tex_coord(u,v), texture_slot(slot)
+    Vertex(float x, float y, float z, float u, float v, int slot = 0, int is_color = 100) : pos(x,y,z), tex_coord(u,v), color(1.0f,1.0f,1.0f), texture_slot(slot), is_color(is_color)
     {
         
     }
-	Vertex(float x, float y, float z, DirectX::XMFLOAT3 color) : pos(x,y,z), color(color)
+	Vertex(float x, float y, float z, DirectX::XMFLOAT3 color, int is_color = 0) : pos(x,y,z), color(color), is_color(is_color)
     {
 	    
     }
@@ -22,4 +22,5 @@ struct Vertex
     DirectX::XMFLOAT2 tex_coord;
 	int texture_slot;
 	DirectX::XMFLOAT3 color;
+	int is_color;
 };

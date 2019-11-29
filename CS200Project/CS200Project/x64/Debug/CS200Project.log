@@ -1,31 +1,26 @@
-﻿  GameFont.cpp
+﻿  Graphics.cpp
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95,78): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(96,75): warning C4267: '인수': 'size_t'에서 'UINT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267: '초기화 중': 'size_t'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         with
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         [
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:             _Ty=UINT
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message : 컴파일되는 함수 템플릿 인스턴스화 'std::unique_ptr<UINT,std::default_delete<_Ty>> std::make_unique<UINT,size_t,0>(size_t &&)'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :             _Ty=UINT
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message : 클래스 템플릿 멤버 함수 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'을(를) 컴파일하는 중입니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :             T=Vertex
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95): message : 컴파일되는 함수 템플릿 인스턴스화 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95): message :             T=Vertex
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\GameFont.cpp(95): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Object.h(96): message : 컴파일되는 클래스 템플릿 인스턴스화 'VertexBuffer<Vertex>'에 대한 참조를 확인하세요.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\filesystem(2091): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::chrono::time_point<std::filesystem::_File_time_clock,std::filesystem::_File_time_clock::duration>'에 대한 참조를 확인하세요.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\xstring(1764): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::basic_string_view<wchar_t,std::char_traits<wchar_t>>'에 대한 참조를 확인하세요.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(669): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::chrono::duration<double,std::ratio<1,1>>'에 대한 참조를 확인하세요.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(177): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::chrono::duration<__int64,std::nano>'에 대한 참조를 확인하세요.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\chrono(647): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::chrono::time_point<std::chrono::steady_clock,std::chrono::steady_clock::duration>'에 대한 참조를 확인하세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(118,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(122,40): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(126,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(130,40): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(144,39): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(149,38): warning C4305: '초기화 중': 'double'에서 'float'(으)로 잘립니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(212,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(212,31): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(212,31): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(212,31): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(212,31): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(213,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(213,47): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(213,47): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(213,47): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(213,47): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(214,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(214,45): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(214,45): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(214,45): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(214,45): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(369,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(370,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe

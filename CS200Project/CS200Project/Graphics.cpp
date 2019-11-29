@@ -40,7 +40,7 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 		return false;
 	}
 
-	
+
 	return true;
 }
 
@@ -129,10 +129,10 @@ void Graphics::Camera_Movement()
 	{
 		camera.Adjust_Position({ 0, -0.01,0 });
 	}
-	if(input.Is_Key_Pressed(Keyboard::N))
+	if (input.Is_Key_Pressed(Keyboard::N))
 	{
-		
-		camera.Adjust_Rotation(0,0, -0.01f);
+
+		camera.Adjust_Rotation(0, 0, -0.01f);
 	}
 	if (input.Is_Key_Pressed(Keyboard::M))
 	{
@@ -153,30 +153,67 @@ void Graphics::Camera_Movement()
 
 
 	if (input.Is_Key_Triggered(Keyboard::C))
-	{		
+	{
+		ID3D11Texture2D* BackBuffer;
+		swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&BackBuffer));
+		
+		D3D11_TEXTURE2D_DESC Desc;
+		Desc.ArraySize = 1;
+		Desc.BindFlags = 0;
+		Desc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+		Desc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+		Desc.Width = 800;
+		Desc.Height = 600;
+		Desc.MipLevels = 1;
+		Desc.MiscFlags = 0;
+		Desc.SampleDesc.Count = 1;
+		Desc.SampleDesc.Quality = 0;
+		Desc.Usage = D3D11_USAGE_STAGING;
+
+		ID3D11Texture2D* new_texture = NULL;
+		device.Get()->CreateTexture2D(&Desc, NULL, &new_texture);
+		device_context.Get()->CopyResource(new_texture, BackBuffer);
+		
+		D3D11_MAPPED_SUBRESOURCE mapped;
+		HRESULT hr = device_context.Get()->Map(new_texture, 0, D3D11_MAP_READ, 0, &mapped);
+
+		if(FAILED(hr))
+		{
+			std::cout << "u funked up" << std::endl;
+			return;
+		}
+
+		UINT* texel = (UINT*)mapped.pData;
+
 		std::vector<COLORREF> color;
 		std::vector<Color4ub> convert_color;
 		Color4ub temp;
 
-		for(int i = 0 ; i < height ; i++)
+
+		for(int i = 0 ; i < height; i++)
 		{
 			for(int j = 0 ; j < width; j++)
 			{
-				color.push_back(GetPixel(handle_to_device_context, j, i));
+				color.push_back(texel[i * width + j]);
 				convert_color.push_back(temp);
 			}
 		}
 
-		for(int i = 0 ; i < width * height; i++)
+		int blue_mask = 0xFF0000;
+		int green_mask = 0x00FF00;
+		int red_mask = 0x0000FF;
+
+		for (int i = 0; i < height * width; i++)
 		{
-			convert_color[i].red = GetRValue(color[i]);
-			convert_color[i].green = GetGValue(color[i]);
-			convert_color[i].blue = GetBValue(color[i]);
-			convert_color[i].alpha = 255;
+			Color4ub color_temp;
+			color_temp.red = (color[i] & red_mask);
+			color_temp.green = (color[i] & green_mask) >> 8;
+			color_temp.blue = (color[i] & blue_mask) >> 16;
+			color_temp.alpha = 255;
+			convert_color[i] = color_temp;
 		}
-
 		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
-
+		std::cout << "asd";
 	}
 
 }
@@ -402,6 +439,16 @@ bool Graphics::InitializeShaders()
 		},
 		{
 			"SLOT", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
+			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
+			0
+		},
+		{
+			"COLOR", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
+			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
+			0
+		},
+		{
+			"ISCOLOR", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
 			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
 			0
 		}
