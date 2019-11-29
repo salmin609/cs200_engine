@@ -36,7 +36,18 @@ void Engine::Init()
     obj_third->Set_Name("circle");
     Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_third);
 
+	Object* obj_fourth = new Object();
+	obj_fourth->Set_Name("line");
+	Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_fourth);
 
+	Object* obj_fifth = new Object();
+	obj_fifth->Set_Name("rect");
+	Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_fifth);
+
+	Object* obj_last = new Object();
+	obj_last->Set_Name("dot");
+	Object_Manager::Get_ObjectManager()->Get_Obj_Container().push_back(obj_last);
+	
     application->Init();
     if (!Graphics::Get_Graphic()->Initialize(application->Get_Application()->Get_Window().Get_Hnalde_Window(), 800, 600))
     {

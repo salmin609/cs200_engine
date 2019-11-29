@@ -16,7 +16,7 @@ Application* Application::Get_Application()
 
 void Application::Init()
 {
-    window.CreateAndShowWindow(L"CS200Project", 800, 600);
+    window.CreateAndShowWindow(L"CS200Project", 1260, 720);
     
 }
 

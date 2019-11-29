@@ -13,6 +13,12 @@
 #include "Object.h"
 #include "GameFont.h"
 
+enum State
+{
+	level1,
+	level2
+};
+
 class Graphics
 {
 public:
@@ -78,6 +84,17 @@ private:
 
 	GameFont* font;
 	GameFont* font_sec;
+	GameFont* font_third;
+	GameFont* font_fourth;
+	GameFont* font_fifth;
+	GameFont* font_sixth;
+	GameFont* font_seven;
+	GameFont* font_eight;
+	GameFont* font_nine;
+	GameFont* font_ten;
+	GameFont* font_eleven;
 
-	float cam_angle;
+	GameFont* font_screenshot;
+
+	State curr_state = level1;
 };

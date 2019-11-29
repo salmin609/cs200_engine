@@ -1,43 +1,46 @@
 #pragma once
-#include <DirectXMath.h>
-using namespace DirectX;
 
 class Camera
 {
 public:
-    Camera();
+	
+	Camera()
+	{
+		zoom = 0.2f;
+		cam_trans.x = 0.0f;
+		cam_trans.y = 0.0f;
+		cam_angle = 0.0f;
+	}
 
-    void Set_Projection_Value(float fov_degrees, float aspect_ratio, float near_z, float far_z);
+	vector2<float>& Get_Cam_Trans()
+	{
+		return cam_trans;
+	}
+	float& Get_Zoom()
+	{
+		return zoom;
+	}
+	float& Get_Angle()
+	{
+		return cam_angle;
+	}
 
-    const XMMATRIX& Get_View_Matrix() const;
-    const XMMATRIX& Get_Projection_Matrix() const;
+	matrix4<float> Get_Cam_Matrix()
+	{
+		matrix4<float> result = MATRIX4::build_identity <float>();
+		result *= MATRIX4::build_translation<float>(cam_trans.x, cam_trans.y);
+		result *= MATRIX4::build_rotation<float>(cam_angle);
+		result *= MATRIX4::build_scale<float>(zoom);
+		result = MATRIX4::transpose(result);
+		return result;
+	}
+	
 
-    const XMVECTOR& Get_Position_Vector() const;
-    const XMFLOAT3& Get_Position_Float3() const;
-    const XMVECTOR& Get_Rotation_Vector() const;
-    const XMFLOAT3& Get_Rotation_Float3() const;
-
-    void Set_Position(const XMVECTOR& pos);
-    void Set_Position(float x, float y, float z);
-    void Adjust_Position(const XMVECTOR& pos);
-    void Adjust_Position(float x, float y, float z);
-    void Set_Rotation(const XMVECTOR& rot);
-    void Set_Rotation(float x, float y, float z);
-    void Adjust_Rotation(const XMVECTOR& rot);
-    void Adjust_Rotation(float x, float y, float z);
-    void Set_Lookat_Pos(XMFLOAT3 look_at_pos);
-
+	
 private:
-    void Update_View_Matrix();
-    XMVECTOR pos_vector;
-    XMVECTOR rot_vector;
-    XMFLOAT3 pos;
-    XMFLOAT3 rot;
-    XMMATRIX view_matrix;
-    XMMATRIX projection_matrix;
-
-    const XMVECTOR default_forward_vector = XMVectorSet(0.0f, 0.0f, 1.0f, 0.0f);
-    const XMVECTOR default_up_vector = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-
-
+	vector2<float> cam_trans;
+	float zoom;
+	float cam_angle;
+	matrix4<float> cam_mat;
+	
 };

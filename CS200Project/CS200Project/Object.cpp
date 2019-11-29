@@ -63,22 +63,22 @@ void Object::Update()
     {
         if(input.Is_Key_Pressed(Keyboard::W))
         {
-            this->translation.y += 0.01;
+            this->translation.y += 0.03;
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::A))
         {
-            this->translation.x -= 0.01;
+            this->translation.x -= 0.03;
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::S))
         {
-            this->translation.y -= 0.01;
+            this->translation.y -= 0.03;
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::D))
         {
-            this->translation.x += 0.01;
+            this->translation.x += 0.03;
             Update_World_Matrix();
         }
         if(input.Is_Key_Pressed(Keyboard::NUM_1))
@@ -119,8 +119,10 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
     ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader)
 {
 	this->angle = 0.0f;
+	
     this->device = device;
     this->device_context = device_context;
+	
     this->texture = texture;
     this->constant_buffer_vertex_shader = &constant_vertexshader;
     this->scale = { 1,1 };
@@ -129,11 +131,13 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Rectangle;
         Vertex v[] =
         {
-                Vertex(-2.5f,  -0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Bottom Left   - [0]
-                Vertex(-2.5f,   0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Top Left      - [1]
-                Vertex(-1.5f,   0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Top Right     - [2]
-                Vertex(-1.5f,  -0.5f, -0.5f, {1.f,1.f,1.f})
+                Vertex(-0.5f,  -0.5f, -0.5f, 1.f,1.f), //FRONT Bottom Left   - [0]
+                Vertex(-0.5f,   0.5f, -0.5f, 1.f,0.f), //FRONT Top Left      - [1]
+                Vertex(0.5f,   0.5f, -0.5f, 0.f,0.f), //FRONT Top Right     - [2]
+                Vertex(0.5f,  -0.5f, -0.5f, 0.f,1.f)
         };
+		this->translation.x = -2.0f;
+		
 
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
 
@@ -152,10 +156,11 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
 
         Vertex v[] =
         {
-                Vertex(2.0,  0.5f, 0.0f, 0.5f, 0.0f), //FRONT Bottom Left   - [0]
-                Vertex(1.5f,   -0.5f, 0.0f, 0.0f, 1.0f), //FRONT Top Left      - [1]
-                Vertex(2.5f,   -0.5f, 0.0f, 1.0f, 1.0f), //FRONT Top Right     - [2]
+                Vertex(0.f,  0.5f, 0.0f, {0.1f,1.5f,0.2f}), //FRONT Bottom Left   - [0]
+                Vertex(-0.5f,   -0.5f, 0.0f, {1.2f,1.6f,0.6f}), //FRONT Top Left      - [1]
+                Vertex(0.5f,   -0.5f, 0.0f, {1.3f,1.2f,0.7f}), //FRONT Top Right     - [2]
         };
+		this->translation.x = 2.0f;
 
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
 
@@ -171,14 +176,14 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Circle;
 
         Vertex* v = new Vertex[31];
-        v[0] = { 0,0,0,0,0 };
+        v[0] = { 0,0,0,{1.f,1.f,1.f} };
 
         float theta;
 
         for(int i = 1; i < 30; i++)
         {
             theta = (TWO_PI * i) / static_cast<float>(30);
-            v[i] = { 1 * cosf(theta), 1.2f * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
+            v[i] = { 1 * cosf(theta), 1.2f * sinf(theta), 0,{ i / 30.f,i / 30.f,i / 30.f} };
         }
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, 31);
 
@@ -200,7 +205,69 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         indices[86] = 1;
         hr = this->index_buffer.Initialize(this->device, indices, 87);
     }
+	if (this->name == "line")
+	{
+		this->shape = Line;
+		Vertex v[] =
+		{
+			Vertex(0.5f,  0.5f, 0.0f, {1.f,1.f,1.f}), //FRONT Bottom Left   - [0]
+			Vertex(-0.5f,   0.5f, 0.0f, {1.f,1.f,1.f}), //FRONT Top Left      - [1]};
+		};
 
+		this->translation.y = 1.5f;
+		
+		HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
+
+		DWORD indices[] =
+		{
+			0,1,0
+		};
+		hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+	}
+	if (this->name == "rect")
+	{
+		this->shape = Rect;
+		Vertex v[] =
+		{
+				Vertex(-0.75f,  -0.5f, -0.5f, 1.f,1.f), //FRONT Bottom Left   - [0]
+				Vertex(-0.75f,   0.5f, -0.5f, 1.f,0.f), //FRONT Top Left      - [1]
+				Vertex(0.75f,   0.5f, -0.5f, 0.f,0.f), //FRONT Top Right     - [2]
+				Vertex(0.75f,  -0.5f, -0.5f, 0.f,1.f)
+		};
+		this->translation.x = 2.0f;
+		this->translation.y = 2.0f;
+
+
+		HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
+
+		DWORD indices[] =
+		{
+			0,1,2,
+			0,2,3,
+		};
+		hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+	}
+	if (this->name == "dot")
+	{
+		this->shape = Rect;
+		Vertex v[] =
+		{
+				Vertex(-0.5f,  -0.5f, -0.5f, 1.f,1.f), //FRONT Bottom Left   - [0]
+		};
+		this->translation.x = -1.0f;
+		this->translation.y = 1.2f;
+
+
+		HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
+
+		DWORD indices[] =
+		{
+			0,
+			
+		};
+		hr = this->index_buffer.Initialize(this->device, indices, ARRAYSIZE(indices));
+	}
+	
     this->Update_World_Matrix();
     return true;
 }
@@ -212,10 +279,13 @@ void Object::Set_Texture(ID3D11ShaderResourceView* texture)
 
 void Object::Draw(const matrix4<float>& view_projection_matrix)
 {
+	if(this->name == "line")
+	{
+		this->device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_LINELIST);
+	}
 	
     Update_World_Matrix();
     this->constant_buffer_vertex_shader->data.mat = this->world_transform * view_projection_matrix;
-    //this->constant_buffer_vertex_shader->data.mat = XMMatrixTranspose(this->constant_buffer_vertex_shader->data.mat);
     this->constant_buffer_vertex_shader->ApplyChange();
     this->device_context->VSSetConstantBuffers(0, 1, this->constant_buffer_vertex_shader->GetAddressOf());
     this->device_context->PSSetShaderResources(0, 1, &this->texture);
@@ -223,6 +293,12 @@ void Object::Draw(const matrix4<float>& view_projection_matrix)
     UINT offset = 0;
     this->device_context->IASetVertexBuffers(0, 1, this->vertex_buffer.Get_Address(), this->vertex_buffer.Stride_Ptr(), &offset);
     this->device_context->DrawIndexed(this->index_buffer.Buffer_Size(), 0, 0);
+
+	if(this->name == "line")
+	{
+		this->device_context->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	}
+	
 }
 
 void Object::Update_World_Matrix()

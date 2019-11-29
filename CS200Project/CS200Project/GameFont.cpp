@@ -57,7 +57,7 @@ void GameFont::Set_Text(std::wstring text, float settingoffsety)
 	v = new Vertex[6 * text.size()];
 	indices = new DWORD[6 * text.size()];
 	int index = 0;
-	float offset = -2.f;
+	float offset = -4.f;
 	float offset_y = settingoffsety;
 
 	for (int i = 0; i < text.size(); i++)
@@ -76,11 +76,11 @@ void GameFont::Set_Text(std::wstring text, float settingoffsety)
 		float char_offset = static_cast<float>(info.width) / static_cast<float>(font.Get_Deatils().imageWidth);
 		
 		v[index] =	   Vertex(offset, offset_y, -0.5f, left_bottom_x_texture, left_top_y_texture,info.page);//FRONT Bottom Left   - [0]
-		v[index + 1] = Vertex(offset, offset_y - 0.1f, -0.5f, left_top_x_texture, left_bottom_y_texture, info.page); //FRONT Top Left      - [1]
+		v[index + 1] = Vertex(offset, offset_y - 0.2f, -0.5f, left_top_x_texture, left_bottom_y_texture, info.page); //FRONT Top Left      - [1]
 		v[index + 2] = Vertex(offset + char_offset, offset_y, -0.5f, right_top_x_texture, right_top_y_texture, info.page); //FRONT Top Right     - [2]
 		v[index + 3] = Vertex(offset + char_offset, offset_y, -0.5f, right_top_x_texture, right_top_y_texture, info.page); //FRONT Top Right     - [2]
-		v[index + 4] = Vertex(offset, offset_y - 0.1f, -0.5f, left_bottom_x_texture, right_bottom_y_texture, info.page);
-		v[index + 5] = Vertex(offset + char_offset, offset_y - 0.1f, -0.5f, right_top_x_texture, right_bottom_y_texture, info.page); //FRONT Top Right     - [2]
+		v[index + 4] = Vertex(offset, offset_y - 0.2f, -0.5f, left_bottom_x_texture, right_bottom_y_texture, info.page);
+		v[index + 5] = Vertex(offset + char_offset, offset_y - 0.2f, -0.5f, right_top_x_texture, right_bottom_y_texture, info.page); //FRONT Top Right     - [2]
 
 		indices[index] = index + 0;
 		indices[index + 1] = index + 1;
@@ -90,7 +90,7 @@ void GameFont::Set_Text(std::wstring text, float settingoffsety)
 		indices[index + 5] = index + 5;
 
 		index += 6;
-		offset += (char_offset + 0.02f) ;
+		offset += (char_offset + 0.04f) ;
 	}
 	HRESULT hr = this->vertex_buffer.Initialize(this->device, v, text.size() * 6);
 	hr = this->index_buffer.Initialize(this->device, indices, text.size() * 6);

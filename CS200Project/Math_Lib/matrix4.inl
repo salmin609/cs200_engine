@@ -102,7 +102,7 @@ constexpr matrix4<T> MATRIX4::build_rotation(float angle_in_radians) noexcept
 	result_matrix.column1.w = 0.0f;
 	result_matrix.column2.x = 0.0f;
 	result_matrix.column2.y = 0.0f;
-	result_matrix.column2.z = 0.0f;
+	result_matrix.column2.z = 1.0f;
 	result_matrix.column2.w = 0.0f;
 	result_matrix.column3.x = 0.0f;
 	result_matrix.column3.y = 0.0f;

@@ -25,7 +25,8 @@ public:
         Triangle = 0,
         Rectangle = 1,
         Line = 2,
-        Circle = 3
+        Circle = 3,
+    	Rect = 4
     };
     Object()
     {

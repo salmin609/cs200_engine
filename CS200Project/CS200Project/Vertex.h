@@ -1,5 +1,7 @@
 #pragma once
 #include <DirectXMath.h>
+#include "vector3.hpp"
+#include "vector2.hpp"
 
 struct Vertex
 {
@@ -14,13 +16,13 @@ struct Vertex
     {
         
     }
-	Vertex(float x, float y, float z, DirectX::XMFLOAT3 color, int is_color = 0) : pos(x,y,z), color(color), is_color(is_color)
+	Vertex(float x, float y, float z, vector3<float> color, int is_color = 0) : pos(x,y,z), color(color), is_color(is_color)
     {
 	    
     }
-    DirectX::XMFLOAT3 pos;
-    DirectX::XMFLOAT2 tex_coord;
+	vector3<float> pos;
+	vector2<float> tex_coord;
 	int texture_slot;
-	DirectX::XMFLOAT3 color;
+	vector3<float> color;
 	int is_color;
 };

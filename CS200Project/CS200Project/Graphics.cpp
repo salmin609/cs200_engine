@@ -23,7 +23,6 @@ Graphics* Graphics::Get_Graphic()
 
 bool Graphics::Initialize(HWND hwnd, int width, int height)
 {
-	this->cam_angle = 0.0f;
 	this->width = width;
 	this->height = height;
 
@@ -62,24 +61,33 @@ void Graphics::Render_Frame()
 	UINT stride = sizeof(Vertex);
 	UINT offset = 0;
 
-	for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
+	if (curr_state == level1)
 	{
-		matrix4<float> check = MATRIX4::build_translation<float>(0.1f, 0.1f);
-		check *= MATRIX4::build_scale<float>(0.1f, 0.1f);
-		matrix4<float> check2 = MATRIX4::transpose<float>(check);
-		//Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
-		Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(check2);
+		for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
+		{
+			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_Cam_Matrix());
+		}
+
+		font->Update();
+		font_sec->Update();
+		font_third->Update();
+		font_fourth->Update();
+		font_fifth->Update();
+		font_sixth->Update();
+		font_seven->Update();
+		font_eight->Update();
+		font_nine->Update();
+		font_ten->Update();
+		font_eleven->Update();
+		font_screenshot->Update();
+
+		sprite_batch->Begin();
+
+		sprite_font->DrawString(sprite_batch.get(), L"Salmin_Engine", DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
+
+		sprite_batch->End();
+
 	}
-
-	font->Update();
-	font_sec->Update();
-
-	sprite_batch->Begin();
-
-	sprite_font->DrawString(sprite_batch.get(), L"Salmin_Engine", DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
-
-	sprite_batch->End();
-
 	this->swap_chain->Present(1, NULL); //VSYNC
 }
 
@@ -119,48 +127,44 @@ void Graphics::Camera_Movement()
 {
 	if (input.Is_Key_Pressed(Keyboard::K_Right))
 	{
-		camera.Adjust_Position({ 0.01, 0,0 });
+		camera.Get_Cam_Trans().x -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Left))
 	{
-		camera.Adjust_Position({ -0.01, 0,0 });
+		camera.Get_Cam_Trans().x += 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Up))
 	{
-		camera.Adjust_Position({ 0, 0.01,0 });
+		camera.Get_Cam_Trans().y -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Down))
 	{
-		camera.Adjust_Position({ 0, -0.01,0 });
+		camera.Get_Cam_Trans().y += 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::N))
 	{
-
-		camera.Adjust_Rotation(0, 0, -0.01f);
+		camera.Get_Angle() -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::M))
 	{
-		//cam_angle -= 0.1f;
-		camera.Adjust_Rotation(0, 0, 0.01f);
+		camera.Get_Angle() += 0.01f;
 	}
 	if (input.Mouse_Wheel_Scroll() == -1)
 	{
-		camera.Adjust_Position({ 0,0, -0.2 });
+		camera.Get_Zoom() -= 0.05f;
 		input.Set_Mouse_Wheel(0, 0);
 	}
 	if (input.Mouse_Wheel_Scroll() == 1)
 	{
-		camera.Adjust_Position({ 0,0, 0.2 });
+		camera.Get_Zoom() += 0.05f;
 		input.Set_Mouse_Wheel(0, 0);
 	}
-
-
 
 	if (input.Is_Key_Triggered(Keyboard::C))
 	{
 		ID3D11Texture2D* BackBuffer;
 		swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&BackBuffer));
-		
+
 		D3D11_TEXTURE2D_DESC Desc;
 		Desc.ArraySize = 1;
 		Desc.BindFlags = 0;
@@ -177,11 +181,11 @@ void Graphics::Camera_Movement()
 		ID3D11Texture2D* new_texture = NULL;
 		device.Get()->CreateTexture2D(&Desc, NULL, &new_texture);
 		device_context.Get()->CopyResource(new_texture, BackBuffer);
-		
+
 		D3D11_MAPPED_SUBRESOURCE mapped;
 		HRESULT hr = device_context.Get()->Map(new_texture, 0, D3D11_MAP_READ, 0, &mapped);
 
-		if(FAILED(hr))
+		if (FAILED(hr))
 		{
 			std::cout << "u funked up" << std::endl;
 			return;
@@ -194,9 +198,9 @@ void Graphics::Camera_Movement()
 		Color4ub temp;
 
 
-		for(int i = 0 ; i < height; i++)
+		for (int i = 0; i < height; i++)
 		{
-			for(int j = 0 ; j < width; j++)
+			for (int j = 0; j < width; j++)
 			{
 				color.push_back(texel[i * width + j]);
 				convert_color.push_back(temp);
@@ -217,9 +221,15 @@ void Graphics::Camera_Movement()
 			convert_color[i] = color_temp;
 		}
 		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
-		std::cout << "asd";
 	}
 
+	if(input.Is_Key_Triggered(Keyboard::P))
+	{
+		if(curr_state == level1)
+		{
+			curr_state = level2;
+		}
+	}
 }
 
 bool Graphics::InitializeDirectX(HWND hwnd)
@@ -498,7 +508,6 @@ bool Graphics::Initialize_Scene()
 		std::cout << "fail to init constant buffer" << std::endl;
 		return false;
 	}
-
 	font = new GameFont();
 	font->Init(device.Get(), device_context.Get(), this->constant_buffer);
 	font->Set_Text(L"사랑의삶");
@@ -507,13 +516,61 @@ bool Graphics::Initialize_Scene()
 	font_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
 	font_sec->Set_Text(L"나는 연료를 가져오고 당신은 불꽃을 가져왔어요.", 1.3f);
 
+	float char_pos = 0.5f;
+
+	font_third = new GameFont();
+	font_third->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_third->Set_Text(L"Welcome to my engine!", char_pos);
+
+	char_pos -= 0.4f;
+	font_fourth = new GameFont();
+	font_fourth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_fourth->Set_Text(L"Object", char_pos);
+
+	char_pos -= 0.8f;
+	font_fifth = new GameFont();
+	font_fifth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_fifth->Set_Text(L"MOVE:   W A S D", char_pos);
+
+	char_pos -= 0.4f;
+	font_sixth = new GameFont();
+	font_sixth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_sixth->Set_Text(L"ROTATE:   K J", char_pos);
+
+	char_pos -= 0.4f;
+	font_seven = new GameFont();
+	font_seven->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_seven->Set_Text(L"SCALE:   1 2 3 4", char_pos);
+
+	char_pos -= 1.f;
+	font_eight = new GameFont();
+	font_eight->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_eight->Set_Text(L"CAMERA", char_pos);
+
+	char_pos -= 0.8f;
+	font_nine = new GameFont();
+	font_nine->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_nine->Set_Text(L"ZOOM:   wheel scroll", char_pos);
+
+	char_pos -= 0.4f;
+	font_ten = new GameFont();
+	font_ten->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_ten->Set_Text(L"MOVE:   arrow", char_pos);
+
+	char_pos -= 0.4f;
+	font_eleven = new GameFont();
+	font_eleven->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_eleven->Set_Text(L"ROTATE: n m", char_pos);
+
+	char_pos -= 1.f;
+	font_screenshot = new GameFont();
+	font_screenshot->Init(device.Get(), device_context.Get(), this->constant_buffer);
+	font_screenshot->Set_Text(L"SCREENSHOT:  C", char_pos);
+
+
 	for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
 	{
 		Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
 	}
-
-	camera.Set_Position(0.0f, 0.0f, -2.f);
-	camera.Set_Projection_Value(90.f, static_cast<float>(width) / static_cast<float>(height), 0.1f, 1000.f);
-
 	return true;
 }
