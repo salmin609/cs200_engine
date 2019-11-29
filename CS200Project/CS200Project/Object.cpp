@@ -106,12 +106,16 @@ void Object::Update()
 			this->angle += 0.1f;
             Update_World_Matrix();
         }
+		
+    }
+	if(shape == Circle)
+	{
 		if (input.Is_Key_Pressed(Keyboard::K))
 		{
 			this->angle -= 0.1f;
 			Update_World_Matrix();
 		}
-    }
+	}
 }
 
 bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
@@ -128,10 +132,10 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Rectangle;
         Vertex v[] =
         {
-                Vertex(-2.5f,  -0.5f, -0.5f, 0.0f, 1.0f), //FRONT Bottom Left   - [0]
-                Vertex(-2.5f,   0.5f, -0.5f, 0.0f, 0.0f), //FRONT Top Left      - [1]
-                Vertex(-1.5f,   0.5f, -0.5f, 1.0f, 0.0f), //FRONT Top Right     - [2]
-                Vertex(-1.5f,  -0.5f, -0.5f, 1.0f, 1.0f)
+                Vertex(-2.5f,  -0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Bottom Left   - [0]
+                Vertex(-2.5f,   0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Top Left      - [1]
+                Vertex(-1.5f,   0.5f, -0.5f, {1.f,1.f,1.f}), //FRONT Top Right     - [2]
+                Vertex(-1.5f,  -0.5f, -0.5f, {1.f,1.f,1.f})
         };
 
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
@@ -177,7 +181,7 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         for(int i = 1; i < 30; i++)
         {
             theta = (TWO_PI * i) / static_cast<float>(30);
-            v[i] = { 1 * cosf(theta), 2 * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
+            v[i] = { 1 * cosf(theta), 1.2f * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
         }
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, 31);
 
@@ -211,6 +215,7 @@ void Object::Set_Texture(ID3D11ShaderResourceView* texture)
 
 void Object::Draw(const XMMATRIX& view_projection_matrix)
 {
+	
     Update_World_Matrix();
     this->constant_buffer_vertex_shader->data.mat = this->world_transform * view_projection_matrix;
     this->constant_buffer_vertex_shader->data.mat = XMMatrixTranspose(this->constant_buffer_vertex_shader->data.mat);
