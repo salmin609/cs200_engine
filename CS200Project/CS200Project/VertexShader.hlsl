@@ -8,6 +8,8 @@ struct VS_INPUT
     float3 inPos : POSITION;
     float2 inTexCoord : TEXCOORD;
 	int slot : SLOT;
+	float3 inColor : COLOR;
+	int isColor : ISCOLOR;
 };
 
 struct VS_OUTPUT
@@ -15,6 +17,8 @@ struct VS_OUTPUT
     float4 outPosition : SV_POSITION;
     float2 outTexCoord : TEXCOORD;
 	int texslot : TEXSLOT;
+	float3 outColor : COLOR;
+	int isColor : ISCOLOR;
 };
 
 VS_OUTPUT main(VS_INPUT input)
@@ -23,6 +27,8 @@ VS_OUTPUT main(VS_INPUT input)
     output.outPosition = mul(float4(input.inPos, 1.0f), mat);
     output.outTexCoord = input.inTexCoord;
 	output.texslot = input.slot;
+	output.outColor = input.inColor;
+	output.isColor = input.isColor;
 
     return output;
 }

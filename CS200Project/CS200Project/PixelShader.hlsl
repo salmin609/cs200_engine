@@ -8,6 +8,8 @@ struct PS_INPUT
     float4 inPosition : SV_POSITION;
     float2 inTexcoord : TEXCOORD;
 	int slot : TEXSLOT;
+	float3 inColor : COLOR;
+	int isColor : ISCOLOR;
 };
 
 Texture2D objTexture : TEXTURE : register(t0);
@@ -20,18 +22,27 @@ SamplerState objSamplerState2 : SAMPLER: register(s2);
 float4 main(PS_INPUT input) : SV_Target
 {
 	float3 pixel_color;
-	if (input.slot == 0)
+	
+	if (input.isColor == 100)
 	{
-		pixel_color = objTexture.Sample(objSamplerState, input.inTexcoord);
+		if (input.slot == 0)
+		{
+			pixel_color = objTexture.Sample(objSamplerState, input.inTexcoord);
+		}
+		if (input.slot == 1)
+		{
+			pixel_color = anotherTexture.Sample(objSamplerState, input.inTexcoord);
+		}
+		if (input.slot == 2)
+		{
+			pixel_color = anotherTexture2.Sample(objSamplerState, input.inTexcoord);
+		}
 	}
-	if (input.slot == 1)
+	else
 	{
-		pixel_color = anotherTexture.Sample(objSamplerState, input.inTexcoord);
+		pixel_color = input.inColor;
 	}
-	if (input.slot == 2)
-	{
-		pixel_color = anotherTexture2.Sample(objSamplerState, input.inTexcoord);
-	}
+	
 
     return float4(pixel_color , alpha);
 }
