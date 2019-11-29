@@ -5,7 +5,7 @@
 
 static int indices_count = 0;
 
-Object::Object(Shape shape) :transform(MATRIX3::build_identity<float>()), scale(1, 1), translation(0, 0), rotation(0, 0), shape(shape)
+Object::Object(Shape shape) :transform(MATRIX3::build_identity<float>()), scale(0, 0), translation(0, 0), rotation(0, 0), shape(shape)
 {
     if(shape == Rectangle)
     {
@@ -106,16 +106,13 @@ void Object::Update()
 			this->angle += 0.1f;
             Update_World_Matrix();
         }
-		
-    }
-	if(shape == Circle)
-	{
 		if (input.Is_Key_Pressed(Keyboard::K))
 		{
 			this->angle -= 0.1f;
 			Update_World_Matrix();
 		}
-	}
+		
+    }
 }
 
 bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
@@ -213,12 +210,12 @@ void Object::Set_Texture(ID3D11ShaderResourceView* texture)
     this->texture = texture;
 }
 
-void Object::Draw(const XMMATRIX& view_projection_matrix)
+void Object::Draw(const matrix4<float>& view_projection_matrix)
 {
 	
     Update_World_Matrix();
     this->constant_buffer_vertex_shader->data.mat = this->world_transform * view_projection_matrix;
-    this->constant_buffer_vertex_shader->data.mat = XMMatrixTranspose(this->constant_buffer_vertex_shader->data.mat);
+    //this->constant_buffer_vertex_shader->data.mat = XMMatrixTranspose(this->constant_buffer_vertex_shader->data.mat);
     this->constant_buffer_vertex_shader->ApplyChange();
     this->device_context->VSSetConstantBuffers(0, 1, this->constant_buffer_vertex_shader->GetAddressOf());
     this->device_context->PSSetShaderResources(0, 1, &this->texture);
@@ -230,8 +227,8 @@ void Object::Draw(const XMMATRIX& view_projection_matrix)
 
 void Object::Update_World_Matrix()
 {
-    this->world_transform = DirectX::XMMatrixIdentity();
-	this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0);
-	this->world_transform *= DirectX::XMMatrixRotationZ(angle);
-	this->world_transform *= DirectX::XMMatrixScaling(scale.x, scale.y, 0);
+	this->world_transform = MATRIX4::build_identity<float>();
+	this->world_transform *= MATRIX4::build_translation<float>(translation.x, translation.y) * MATRIX4::build_rotation<float>(angle) * MATRIX4::build_scale<float>(scale.x, scale.y);
+
+	this->world_transform = MATRIX4::transpose(this->world_transform);
 }

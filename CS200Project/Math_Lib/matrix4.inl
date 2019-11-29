@@ -35,7 +35,7 @@ constexpr T& matrix4<T>::operator()(int column, int row) noexcept
 template <typename T>
 constexpr matrix4<T> operator*(const matrix4<T>& m1, const matrix4<T>& m2) noexcept
 {
-	matrix3<T> result_matrix;
+	matrix4<T> result_matrix;
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -89,7 +89,7 @@ constexpr matrix4<T> MATRIX4::transpose(const matrix4<T>& m) noexcept
 template <typename T>
 constexpr matrix4<T> MATRIX4::build_rotation(float angle_in_radians) noexcept
 {
-	matrix4   result_matrix;
+	matrix4<T>   result_matrix;
 	const int zero_val = 0;
 
 	result_matrix.column0.x = cos(angle_in_radians);
@@ -184,6 +184,7 @@ constexpr matrix4<T> MATRIX4::build_translation(float translate_x, float transla
 	result_matrix.column2.z = 1.0f;
 	result_matrix.column3.x = translate_x;
 	result_matrix.column3.y = translate_y;
+	result_matrix.column3.z = 1.f;
 	result_matrix.column3.w = 1.0f;
 
 	return result_matrix;

@@ -64,7 +64,11 @@ void Graphics::Render_Frame()
 
 	for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
 	{
-		Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
+		matrix4<float> check = MATRIX4::build_translation<float>(0.1f, 0.1f);
+		check *= MATRIX4::build_scale<float>(0.1f, 0.1f);
+		matrix4<float> check2 = MATRIX4::transpose<float>(check);
+		//Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
+		Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(check2);
 	}
 
 	font->Update();

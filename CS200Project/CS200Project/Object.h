@@ -6,7 +6,7 @@
 #include "Vertex.h"
 #include "matrix3.hpp"
 #include "Constant_Buffer.h"
-
+#include "matrix4.hpp"
 using namespace DirectX;
 
 //#include <minwindef.h>
@@ -37,11 +37,11 @@ public:
     {
         return transform;
     }
-    DirectX::XMFLOAT2& Get_Scale()
+    vector2<float>& Get_Scale()
     {
         return scale;
     }
-    DirectX::XMFLOAT2& Get_Translation()
+	vector2<float>& Get_Translation()
     {
         return translation;
     }
@@ -77,7 +77,7 @@ public:
 
     bool Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context, ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader);
     void Set_Texture(ID3D11ShaderResourceView* texture);
-    void Draw(const XMMATRIX& view_projection_matrix);
+    void Draw(const matrix4<float>& view_projection_matrix);
     //bool Initialize(ID3D11Device * device, ID3D11DeviceContext * deviceContext, ID3D11ShaderResourceView * texture, ConstantBuffer<CB_VS_vertexshader> & cb_vs_vertexshader);
 
     void Set_Name(std::string name)
@@ -96,11 +96,12 @@ private:
     VertexBuffer<Vertex> vertex_buffer;
     IndexBuffer index_buffer;
 
-    DirectX::XMMATRIX world_transform;
+    //DirectX::XMMATRIX world_transform;
+	matrix4<float> world_transform;
     //MATRIX3 transform;
     matrix3<float> transform;
-    DirectX::XMFLOAT2 scale;
-    DirectX::XMFLOAT2 translation;
+    vector2<float> scale;
+    vector2<float> translation;
     DirectX::XMFLOAT2 rotation;
     Shape shape;
     DWORD* indices;
