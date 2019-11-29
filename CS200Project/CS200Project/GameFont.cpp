@@ -45,8 +45,6 @@ void GameFont::Update()
 	this->device_context->PSSetShaderResources(0, 1, font0.GetAddressOf());
 	this->device_context->PSSetShaderResources(1, 1, font1.GetAddressOf());
 	this->device_context->PSSetShaderResources(2, 1, font2.GetAddressOf());
-	//this->device_context->PSSetShaderResources(0, 3, font0.GetAddressOf());
-	//this->device_context->PSSetShaderResources(0, 3, font2.GetAddressOf());
 	this->device_context->IASetIndexBuffer(this->index_buffer.Get(), DXGI_FORMAT::DXGI_FORMAT_R32_UINT, 0);
 	UINT offset = 0;
 	this->device_context->IASetVertexBuffers(0, 1, this->vertex_buffer.Get_Address(), this->vertex_buffer.Stride_Ptr(), &offset);
@@ -77,7 +75,7 @@ void GameFont::Set_Text(std::wstring text, float settingoffsety)
 
 		float char_offset = static_cast<float>(info.width) / static_cast<float>(font.Get_Deatils().imageWidth);
 		
-		v[index] = Vertex(offset, offset_y, -0.5f, left_bottom_x_texture, left_top_y_texture,info.page);//FRONT Bottom Left   - [0]
+		v[index] =	   Vertex(offset, offset_y, -0.5f, left_bottom_x_texture, left_top_y_texture,info.page);//FRONT Bottom Left   - [0]
 		v[index + 1] = Vertex(offset, offset_y - 0.1f, -0.5f, left_top_x_texture, left_bottom_y_texture, info.page); //FRONT Top Left      - [1]
 		v[index + 2] = Vertex(offset + char_offset, offset_y, -0.5f, right_top_x_texture, right_top_y_texture, info.page); //FRONT Top Right     - [2]
 		v[index + 3] = Vertex(offset + char_offset, offset_y, -0.5f, right_top_x_texture, right_top_y_texture, info.page); //FRONT Top Right     - [2]

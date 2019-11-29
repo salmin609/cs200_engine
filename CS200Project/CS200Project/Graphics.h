@@ -78,4 +78,6 @@ private:
 
 	GameFont* font;
 	GameFont* font_sec;
+
+	float cam_angle;
 };

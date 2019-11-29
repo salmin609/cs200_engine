@@ -23,6 +23,7 @@ Graphics* Graphics::Get_Graphic()
 
 bool Graphics::Initialize(HWND hwnd, int width, int height)
 {
+	this->cam_angle = 0.0f;
 	this->width = width;
 	this->height = height;
 
@@ -68,7 +69,6 @@ void Graphics::Render_Frame()
 
 	font->Update();
 	font_sec->Update();
-	//this->obj.Draw(camera.Get_View_Matrix() * camera.Get_Projection_Matrix());
 
 	sprite_batch->Begin();
 
@@ -128,6 +128,16 @@ void Graphics::Camera_Movement()
 	if (input.Is_Key_Pressed(Keyboard::K_Down))
 	{
 		camera.Adjust_Position({ 0, -0.01,0 });
+	}
+	if(input.Is_Key_Pressed(Keyboard::N))
+	{
+		
+		camera.Adjust_Rotation(0,0, -0.01f);
+	}
+	if (input.Is_Key_Pressed(Keyboard::M))
+	{
+		//cam_angle -= 0.1f;
+		camera.Adjust_Rotation(0, 0, 0.01f);
 	}
 	if (input.Mouse_Wheel_Scroll() == -1)
 	{

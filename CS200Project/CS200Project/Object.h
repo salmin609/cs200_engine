@@ -108,5 +108,6 @@ private:
     int indices_index_count;
     int vertex_count;
     std::string name;
+	float angle;
     
 };

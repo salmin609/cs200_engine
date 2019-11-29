@@ -101,18 +101,23 @@ void Object::Update()
             this->scale.y += 0.01;
             Update_World_Matrix();
         }
-        if(input.Is_Key_Pressed(Keyboard::K))
+        if(input.Is_Key_Pressed(Keyboard::J))
         {
-            this->rotation.x += 0.01;
-            this->rotation.y += 0.01;
+			this->angle += 0.1f;
             Update_World_Matrix();
         }
+		if (input.Is_Key_Pressed(Keyboard::K))
+		{
+			this->angle -= 0.1f;
+			Update_World_Matrix();
+		}
     }
 }
 
 bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
     ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader)
 {
+	this->angle = 0.0f;
     this->device = device;
     this->device_context = device_context;
     this->texture = texture;
@@ -123,10 +128,10 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Rectangle;
         Vertex v[] =
         {
-                Vertex(-0.5f,  -0.5f, -0.5f, 0.0f, 1.0f), //FRONT Bottom Left   - [0]
-                Vertex(-0.5f,   0.5f, -0.5f, 0.0f, 0.0f), //FRONT Top Left      - [1]
-                Vertex(0.5f,   0.5f, -0.5f, 1.0f, 0.0f), //FRONT Top Right     - [2]
-                Vertex(0.5f,  -0.5f, -0.5f, 1.0f, 1.0f)
+                Vertex(-2.5f,  -0.5f, -0.5f, 0.0f, 1.0f), //FRONT Bottom Left   - [0]
+                Vertex(-2.5f,   0.5f, -0.5f, 0.0f, 0.0f), //FRONT Top Left      - [1]
+                Vertex(-1.5f,   0.5f, -0.5f, 1.0f, 0.0f), //FRONT Top Right     - [2]
+                Vertex(-1.5f,  -0.5f, -0.5f, 1.0f, 1.0f)
         };
 
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, ARRAYSIZE(v));
@@ -172,7 +177,7 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         for(int i = 1; i < 30; i++)
         {
             theta = (TWO_PI * i) / static_cast<float>(30);
-            v[i] = { 1 * cosf(theta), 1 * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
+            v[i] = { 1 * cosf(theta), 2 * sinf(theta), 0,-cosf(theta) * 4,-sinf(theta) * 4};
         }
         HRESULT hr = this->vertex_buffer.Initialize(this->device, v, 31);
 
@@ -221,5 +226,7 @@ void Object::Draw(const XMMATRIX& view_projection_matrix)
 void Object::Update_World_Matrix()
 {
     this->world_transform = DirectX::XMMatrixIdentity();
-    this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0)* DirectX::XMMatrixRotationRollPitchYawFromVector({rotation.x, rotation.y}) * DirectX::XMMatrixScaling(scale.x, scale.y, 0);
+	this->world_transform *= DirectX::XMMatrixTranslation(translation.x, translation.y, 0);
+	this->world_transform *= DirectX::XMMatrixRotationZ(angle);
+	this->world_transform *= DirectX::XMMatrixScaling(scale.x, scale.y, 0);
 }
