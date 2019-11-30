@@ -758,7 +758,7 @@ bool Graphics::Initialize_Scene()
 	///Level3
 	{
 		animation = new Animation_Object();
-		animation->Initialize(this->device.Get(), this->device_context.Get(), this->animation_sprite.Get(), this->constant_buffer);
+		animation->Initialize(this->device.Get(), this->device_context.Get(), this->animation_sprite.Get(), this->constant_buffer, 6, 4, 2);
 	}
 
 	///////////////////////////////////////////////////////////////////////

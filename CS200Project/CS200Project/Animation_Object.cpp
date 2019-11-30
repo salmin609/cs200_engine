@@ -27,15 +27,15 @@ void Animation_Object::Draw(const matrix4<float>& view_projection_matrix, Timer&
 }
 
 bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
-	ID3D11ShaderResourceView* texture, ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z, int frame, int frame_in_line, int line)
+	ID3D11ShaderResourceView* texture, ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, int frame, int frame_in_line, int line, float z)
 {
 
 	this->device = device;
 	this->device_context = device_context;
 	this->texture = texture;
 	this->constant_buffer_vertex_shader = &constant_vertexshader;
-	this->frame = 6;
-	int frame_in_line = 4;
+	this->frame = frame;
+	float line_increment = 1.f / static_cast<float>(line);
 	int index = 0;
 	
 	v = new Vertex[6 * frame];
@@ -50,9 +50,9 @@ bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* dev
 	for(int i = 0; i < frame; i++)
 	{
 		v[index] = Vertex(-0.5f, 0.5f, -0.5f, start_u, start_v);
-		v[index + 1] = Vertex(-0.5f, -0.5f, -0.5f, start_u, start_v + 0.5f);
-		v[index + 2] = Vertex(0.5f, -0.5f, -0.5f, start_u + increment, start_v + 0.5f);
-		v[index + 3] = Vertex(0.5f, -0.5f, -0.5f, start_u + increment, start_v + 0.5f);
+		v[index + 1] = Vertex(-0.5f, -0.5f, -0.5f, start_u, start_v + line_increment);
+		v[index + 2] = Vertex(0.5f, -0.5f, -0.5f, start_u + increment, start_v + line_increment);
+		v[index + 3] = Vertex(0.5f, -0.5f, -0.5f, start_u + increment, start_v + line_increment);
 		v[index + 4] = Vertex(0.5f, 0.5f, -0.5f, start_u + increment, start_v);
 		v[index + 5] = Vertex(-0.5f, 0.5f, -0.5f, start_u, start_v);
 
@@ -65,7 +65,7 @@ bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* dev
 		
 		if(i >= frame_in_line)
 		{
-			start_v = 0.5f;
+			start_v += line_increment;
 		}
 
 		start_u += increment;
