@@ -27,7 +27,7 @@ void Animation_Object::Draw(const matrix4<float>& view_projection_matrix, Timer&
 }
 
 bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
-	ID3D11ShaderResourceView* texture, ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z)
+	ID3D11ShaderResourceView* texture, ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z, int frame, int frame_in_line, int line)
 {
 
 	this->device = device;

@@ -1,20 +1,57 @@
-﻿  Graphics.cpp
+﻿  Animation_Object.cpp
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(398,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(399,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(31,1): error C2511: 'bool Animation_Object::Initialize(ID3D11Device *,ID3D11DeviceContext *,ID3D11ShaderResourceView *,ConstantBuffer<Constant_VS_vertex_shader> &,float,int,int,int)': 오버로드된 멤버 함수가 'Animation_Object'에 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.h(7): message : 'Animation_Object' 선언을 참조하십시오.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(33,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(34,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(35,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(36,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(37,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(38,22): error C2082: 'frame_in_line' 정식 매개 변수 재정의
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(41,27): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(42,32): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(52,10): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(52,10): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(52,10): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(53,14): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(53,14): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(53,14): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(54,14): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(54,14): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(54,14): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(55,14): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(55,14): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(55,14): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(56,14): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(56,14): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(56,14): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(57,14): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(57,14): error C3867: 'Animation_Object::v': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(57,14): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(59,16): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(59,16): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(59,16): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(60,20): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(60,20): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(60,20): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(61,20): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(61,20): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(61,20): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(62,20): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(62,20): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(62,20): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(63,20): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(63,20): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(63,20): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(64,20): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(64,20): error C3867: 'Animation_Object::indices': 비표준 구문입니다. '&'를 사용하여 멤버 포인터를 만드세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(64,20): error C2109: 첨자는 배열 또는 포인터 형식을 사용해야 합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78,15): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78,46): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78,61): error C2597: 비정적 멤버 'Animation_Object::v'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(79,7): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(79,37): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(79,58): error C2597: 비정적 멤버 'Animation_Object::indices'에 대한 참조가 잘못되었습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(80,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
+  Application.cpp
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(81,2): error C2671: 'Animation_Object::Initialize': 정적 멤버 함수에 'this' 포인터가 없습니다.
