@@ -9,6 +9,7 @@
 #include "stb/include/stb_image_write.h"
 #include "Color4ub.hpp"
 #include "GameFont.h"
+#include "Instance_Object.h"
 
 
 Graphics* Graphics::graphic = nullptr;
@@ -123,6 +124,19 @@ void Graphics::Render_Frame()
 
 		font_animation->Update();
 		font_animation_sec->Update();
+	}
+	else if(curr_state == level4)
+	{
+		instance->Draw(camera.Get_Cam_Matrix());
+		
+		last->Draw(camera.Get_Cam_Matrix());
+	}
+	else if(curr_state == level5)
+	{
+		for(int i = 0 ; i < 1000; i++)
+		{
+			test_opt[i].Draw(camera.Get_Cam_Matrix());
+		}
 	}
 
 	//this->swap_chain->Present(1, NULL); //VSYNC
@@ -269,6 +283,14 @@ void Graphics::Camera_Movement()
 		else if (curr_state == level2)
 		{
 			curr_state = level3;
+		}
+		else if(curr_state == level3)
+		{
+			curr_state = level4;
+		}
+		else if(curr_state == level4)
+		{
+			curr_state = level5;
 		}
 		else
 		{
@@ -496,11 +518,7 @@ bool Graphics::InitializeShaders()
 			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
 			0
 		},
-		/*{
-			"TEXCOORD", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
-			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
-			0
-		},*/
+
 		{
 			"SLOT", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
 			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
@@ -767,6 +785,21 @@ bool Graphics::Initialize_Scene()
 	}
 
 	///////////////////////////////////////////////////////////////////////
+	///
+	{
+		instance = new Instance_Object();
+		instance->Set_Name("rectangle");
+		instance->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
+	}
 
+	///////////////////////////////////////////////////////////////////////
+	test_opt = new Object[1000];
+	test_opt->Set_Name("rectangle");
+
+	for(int i = 0; i < 1000; i++)
+	{
+		test_opt[i].Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
+	}
+	
 	return true;
 }

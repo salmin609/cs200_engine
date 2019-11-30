@@ -76,9 +76,9 @@ public:
     }
     void Update();
 
-    bool Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context, ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z = -0.5f);
+    virtual bool Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context, ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z = -0.5f);
     void Set_Texture(ID3D11ShaderResourceView* texture);
-    void Draw(const matrix4<float>& view_projection_matrix);
+	virtual void Draw(const matrix4<float>& view_projection_matrix);
     //bool Initialize(ID3D11Device * device, ID3D11DeviceContext * deviceContext, ID3D11ShaderResourceView * texture, ConstantBuffer<CB_VS_vertexshader> & cb_vs_vertexshader);
 
     void Set_Name(std::string name)

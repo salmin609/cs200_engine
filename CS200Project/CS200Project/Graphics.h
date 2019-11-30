@@ -19,7 +19,9 @@ enum State
 {
 	level1,
 	level2,
-	level3
+	level3,
+	level4,
+	level5
 };
 
 class Graphics
@@ -101,6 +103,8 @@ private:
 	Object* sang_rusuo_last;
 	Object* last;
 
+	Object* instance;
+
 	GameFont* font;
 	GameFont* font_sec;
 	GameFont* font_third;
@@ -124,6 +128,8 @@ private:
 	Animation_Object* animation;
 	GameFont* font_animation;
 	GameFont* font_animation_sec;
+
+	Object* test_opt;
 	
 	Timer timer;
 	State curr_state = level1;

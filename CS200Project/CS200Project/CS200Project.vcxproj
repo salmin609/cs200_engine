@@ -160,6 +160,7 @@
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="Instance_Object.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="My_Window.cpp" />
     <ClCompile Include="Object.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="Image.hpp" />
     <ClInclude Include="Index_Buffer.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="Instance_Object.h" />
     <ClInclude Include="My_Window.h" />
     <ClInclude Include="Object.h" />
     <ClInclude Include="Object_Manager.h" />

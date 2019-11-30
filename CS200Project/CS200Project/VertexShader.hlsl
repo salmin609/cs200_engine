@@ -21,10 +21,10 @@ struct VS_OUTPUT
 	int isColor : ISCOLOR;
 };
 
-VS_OUTPUT main(VS_INPUT input)
+VS_OUTPUT main(VS_INPUT input, uint instance_id : SV_InstanceID)
 {
     VS_OUTPUT output;
-    output.outPosition = mul(float4(input.inPos, 1.0f), mat);
+    output.outPosition = mul(float4(input.inPos.x + (instance_id % 100), input.inPos.y + (instance_id / 100), input.inPos.z, 1.0f), mat);
     output.outTexCoord = input.inTexCoord;
 	output.texslot = input.slot;
 	output.outColor = input.inColor;
