@@ -38,13 +38,20 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 	{
 		return false;
 	}
-
+	timer.Start();
 
 	return true;
 }
 
 void Graphics::Render_Frame()
 {
+
+	if(seconds > 1000.f)
+	{
+		std::cout << "check" << std::endl;
+		seconds = 0.f;
+	}
+	
 	float back_ground[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	this->device_context->ClearRenderTargetView(this->render_target_view.Get(), back_ground);
 	this->device_context->ClearDepthStencilView(this->depth_stencil_view.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -81,13 +88,33 @@ void Graphics::Render_Frame()
 		font_eleven->Update();
 		font_screenshot->Update();
 
-		sprite_batch->Begin();
+		static int fps_counter = 0;
+		static std::string fps = "FPS : 0";
+		fps_counter += 1;
 
-		sprite_font->DrawString(sprite_batch.get(), L"Salmin_Engine", DirectX::XMFLOAT2(0, 0), DirectX::Colors::White, 0.0f, DirectX::XMFLOAT2(0.0f, 0.0f), DirectX::XMFLOAT2(1.0f, 1.0f));
-
-		sprite_batch->End();
-
+		if(timer.Get_Milli_Seconds() > 1000.f)
+		{
+			fps = "FPS: " + std::to_string(fps_counter);
+			std::cout << fps << std::endl;
+			fps_counter = 0;
+			timer.Restart();
+		}
 	}
+	else if(curr_state == level2)
+	{
+		sang_rusuo->Draw(camera.Get_Cam_Matrix());
+
+		sang_rusuo->Update();
+
+		
+		last->Draw(camera.Get_Cam_Matrix());
+		
+		font_hierachy->Update();
+		font_hierachy_sec->Update();
+		font_hierachy_third->Update();
+		font_hierachy_fourth->Update();
+	}
+	
 	this->swap_chain->Present(1, NULL); //VSYNC
 }
 
@@ -228,6 +255,10 @@ void Graphics::Camera_Movement()
 		if(curr_state == level1)
 		{
 			curr_state = level2;
+		}
+		else
+		{
+			curr_state = level1;
 		}
 	}
 }
@@ -487,90 +518,209 @@ bool Graphics::InitializeShaders()
 
 bool Graphics::Initialize_Scene()
 {
-	HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\dicksean.png", nullptr, my_texture.GetAddressOf());
-
-	if (FAILED(hr))
 	{
-		std::cout << "fail to create wic texture from file" << std::endl;
-		return false;
+		
+		HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\dicksean.png", nullptr, my_texture.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture from file" << std::endl;
+			return false;
+		}
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\ill2.png", nullptr, sanglusuo.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture ill from file" << std::endl;
+			return false;
+		}
+		
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\arm2.png", nullptr, sanglusuo_arm.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture arm from file" << std::endl;
+			return false;
+		}
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\arm3.png", nullptr, sanglusuo_arm_right.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture arm from file" << std::endl;
+			return false;
+		}
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\leg2.png", nullptr, sanglusuo_leg.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture leg from file" << std::endl;
+			return false;
+		}
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\leg3.png", nullptr, sanglusuo_leg_right.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture leg from file" << std::endl;
+			return false;
+		}
+
+		
+
+		hr = this->constant_buffer.Initialize(this->device.Get(), this->device_context.Get());
+		if (FAILED(hr))
+		{
+			std::cout << "fail to init constant buffer" << std::endl;
+			return false;
+		}
+
+		hr = this->constant_pixel_buffer.Initialize(this->device.Get(), this->device_context.Get());
+		if (FAILED(hr))
+		{
+			std::cout << "fail to init constant buffer" << std::endl;
+			return false;
+		}
+		font = new GameFont();
+		font->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font->Set_Text(L"사랑의삶");
+
+		font_sec = new GameFont();
+		font_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_sec->Set_Text(L"나는 연료를 가져오고 당신은 불꽃을 가져왔어요.", 1.3f);
+
+		float char_pos = 0.5f;
+
+		font_third = new GameFont();
+		font_third->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_third->Set_Text(L"Welcome to my engine!", char_pos);
+
+		char_pos -= 0.4f;
+		font_fourth = new GameFont();
+		font_fourth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_fourth->Set_Text(L"Object", char_pos);
+
+		char_pos -= 0.8f;
+		font_fifth = new GameFont();
+		font_fifth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_fifth->Set_Text(L"MOVE:   W A S D", char_pos);
+
+		char_pos -= 0.4f;
+		font_sixth = new GameFont();
+		font_sixth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_sixth->Set_Text(L"ROTATE:   K J", char_pos);
+
+		char_pos -= 0.4f;
+		font_seven = new GameFont();
+		font_seven->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_seven->Set_Text(L"SCALE:   1 2 3 4", char_pos);
+
+		char_pos -= 1.f;
+		font_eight = new GameFont();
+		font_eight->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_eight->Set_Text(L"CAMERA", char_pos);
+
+		char_pos -= 0.8f;
+		font_nine = new GameFont();
+		font_nine->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_nine->Set_Text(L"ZOOM:   wheel scroll", char_pos);
+
+		char_pos -= 0.4f;
+		font_ten = new GameFont();
+		font_ten->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_ten->Set_Text(L"MOVE:   arrow", char_pos);
+
+		char_pos -= 0.4f;
+		font_eleven = new GameFont();
+		font_eleven->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_eleven->Set_Text(L"ROTATE: n m", char_pos);
+
+		char_pos -= 1.f;
+		font_screenshot = new GameFont();
+		font_screenshot->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_screenshot->Set_Text(L"SCREENSHOT:  C", char_pos);
+
+
+		char_pos = 0.5f;
+		font_hierachy = new GameFont();
+		font_hierachy->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_hierachy->Set_Text(L"HIERACHAL EXAMPLE", char_pos);
+
+		char_pos -= 0.6f;
+		font_hierachy_sec = new GameFont();
+		font_hierachy_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_hierachy_sec->Set_Text(L"This is ILL hierachy!", char_pos);
+
+		char_pos -= 0.6f;
+		font_hierachy_third = new GameFont();
+		font_hierachy_third->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_hierachy_third->Set_Text(L"Rotation hierachy : A D", char_pos);
+
+		char_pos -= 0.6f;
+		font_hierachy_fourth = new GameFont();
+		font_hierachy_fourth->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_hierachy_fourth->Set_Text(L"Scale hierachy : W S", char_pos);
+
+
+		for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
+		{
+			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
+		}
 	}
 
-	hr = this->constant_buffer.Initialize(this->device.Get(), this->device_context.Get());
-	if (FAILED(hr))
+	///////////////////////////////////////////////////////////////////////
+	///Level2
 	{
-		std::cout << "fail to init constant buffer" << std::endl;
-		return false;
+		sang_rusuo = new Object();
+		sang_rusuo->Set_Name("rectangle");
+		sang_rusuo->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo.Get(), this->constant_buffer, -0.4f);
+		sang_rusuo->Get_Translation().x = 0.f;
+		sang_rusuo->Get_Translation().y = 0.3f;
+
+		sang_rusuo_left_arm = new Object();
+		sang_rusuo_left_arm->Set_Name("rectangle");
+		sang_rusuo_left_arm->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_arm.Get(), this->constant_buffer, -0.3f);
+		sang_rusuo_left_arm->Get_Translation().x = -0.7f;
+		sang_rusuo_left_arm->Get_Translation().y = 0.f;
+		
+		sang_rusuo_right_arm = new Object();
+		sang_rusuo_right_arm->Set_Name("rectangle");
+		sang_rusuo_right_arm->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_arm_right.Get(), this->constant_buffer, -0.5f);
+		sang_rusuo_right_arm->Get_Translation().x = 0.7f;
+		sang_rusuo_right_arm->Get_Translation().y = 0.f;
+		
+		sang_rusuo_left_leg = new Object();
+		sang_rusuo_left_leg->Set_Name("rectangle");
+		sang_rusuo_left_leg->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg.Get(), this->constant_buffer,-0.5f);
+		sang_rusuo_left_leg->Get_Translation().x = -0.7f;
+		sang_rusuo_left_leg->Get_Translation().y = -0.7f;
+		
+		sang_rusuo_right_leg = new Object();
+		sang_rusuo_right_leg->Set_Name("rectangle");
+		sang_rusuo_right_leg->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg_right.Get(), this->constant_buffer, -0.5f);
+		sang_rusuo_right_leg->Get_Translation().x = 0.7f;
+		sang_rusuo_right_leg->Get_Translation().y = -0.7f;
+		
+		sang_rusuo_last = new Object();
+		sang_rusuo_last->Set_Name("dot");
+		sang_rusuo_last->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg_right.Get(), this->constant_buffer, -0.5f);
+		sang_rusuo_last->Get_Translation().x = 0.f;
+		sang_rusuo_last->Get_Translation().y = 0.3f;
+
+		
+		sang_rusuo->Set_Left_Arm(sang_rusuo_left_arm);
+		sang_rusuo->Set_Right_Arm(sang_rusuo_right_arm);
+		sang_rusuo->Set_Left_Leg(sang_rusuo_left_leg);
+		sang_rusuo->Set_Right_Leg(sang_rusuo_right_leg);
+		sang_rusuo->Set_Last(sang_rusuo_last);
+
+		last = new Object();
+		last->Set_Name("dot");
+		last->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
+		///////////////////////////////////////////////////////////////////////
 	}
-
-	hr = this->constant_pixel_buffer.Initialize(this->device.Get(), this->device_context.Get());
-	if (FAILED(hr))
-	{
-		std::cout << "fail to init constant buffer" << std::endl;
-		return false;
-	}
-	font = new GameFont();
-	font->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font->Set_Text(L"사랑의삶");
-
-	font_sec = new GameFont();
-	font_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_sec->Set_Text(L"나는 연료를 가져오고 당신은 불꽃을 가져왔어요.", 1.3f);
-
-	float char_pos = 0.5f;
-
-	font_third = new GameFont();
-	font_third->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_third->Set_Text(L"Welcome to my engine!", char_pos);
-
-	char_pos -= 0.4f;
-	font_fourth = new GameFont();
-	font_fourth->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_fourth->Set_Text(L"Object", char_pos);
-
-	char_pos -= 0.8f;
-	font_fifth = new GameFont();
-	font_fifth->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_fifth->Set_Text(L"MOVE:   W A S D", char_pos);
-
-	char_pos -= 0.4f;
-	font_sixth = new GameFont();
-	font_sixth->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_sixth->Set_Text(L"ROTATE:   K J", char_pos);
-
-	char_pos -= 0.4f;
-	font_seven = new GameFont();
-	font_seven->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_seven->Set_Text(L"SCALE:   1 2 3 4", char_pos);
-
-	char_pos -= 1.f;
-	font_eight = new GameFont();
-	font_eight->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_eight->Set_Text(L"CAMERA", char_pos);
-
-	char_pos -= 0.8f;
-	font_nine = new GameFont();
-	font_nine->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_nine->Set_Text(L"ZOOM:   wheel scroll", char_pos);
-
-	char_pos -= 0.4f;
-	font_ten = new GameFont();
-	font_ten->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_ten->Set_Text(L"MOVE:   arrow", char_pos);
-
-	char_pos -= 0.4f;
-	font_eleven = new GameFont();
-	font_eleven->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_eleven->Set_Text(L"ROTATE: n m", char_pos);
-
-	char_pos -= 1.f;
-	font_screenshot = new GameFont();
-	font_screenshot->Init(device.Get(), device_context.Get(), this->constant_buffer);
-	font_screenshot->Set_Text(L"SCREENSHOT:  C", char_pos);
-
-
-	for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
-	{
-		Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
-	}
+	
 	return true;
 }

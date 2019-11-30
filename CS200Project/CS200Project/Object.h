@@ -76,7 +76,7 @@ public:
     }
     void Update();
 
-    bool Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context, ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader);
+    bool Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context, ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z = -0.5f);
     void Set_Texture(ID3D11ShaderResourceView* texture);
     void Draw(const matrix4<float>& view_projection_matrix);
     //bool Initialize(ID3D11Device * device, ID3D11DeviceContext * deviceContext, ID3D11ShaderResourceView * texture, ConstantBuffer<CB_VS_vertexshader> & cb_vs_vertexshader);
@@ -84,6 +84,38 @@ public:
     void Set_Name(std::string name)
     {
         this->name = name;
+    }
+	void Set_Left_Leg(Object* left_leg)
+    {
+		Hierachy_left_leg = left_leg;
+		Hierachy_left_leg->Get_Translation().x = this->translation.x - 1.f;
+		Hierachy_left_leg->Get_Translation().y = this->translation.y - 1.3f;
+    }
+	void Set_Right_Leg(Object* right_leg)
+	{
+		Hierachy_right_leg = right_leg;
+		Hierachy_right_leg->Get_Translation().x = this->translation.x + 1.f;
+		Hierachy_right_leg->Get_Translation().y = this->translation.y - 1.3f;
+	}
+	void Set_Left_Arm(Object* left_arm)
+	{
+		Hierachy_left_arm = left_arm;
+		Hierachy_left_arm->Get_Translation().x = this->translation.x - 1.f;
+		Hierachy_left_arm->Get_Translation().y = this->translation.y - 0.3f;
+	}
+	void Set_Right_Arm(Object* right_arm)
+	{
+		Hierachy_right_arm = right_arm;
+		Hierachy_right_arm->Get_Translation().x = this->translation.x + 1.f;
+		Hierachy_right_arm->Get_Translation().y = this->translation.y - 0.3f;
+	}
+	void Set_Last(Object* last)
+	{
+		Hierachy_last = last;
+	}
+	float& Get_Angle()
+    {
+		return angle;
     }
 
 private:
@@ -111,5 +143,11 @@ private:
     int vertex_count;
     std::string name;
 	float angle;
+
+	Object* Hierachy_left_leg = nullptr;
+	Object* Hierachy_right_leg = nullptr;
+	Object* Hierachy_left_arm = nullptr;
+	Object* Hierachy_right_arm = nullptr;
+	Object* Hierachy_last = nullptr;
     
 };

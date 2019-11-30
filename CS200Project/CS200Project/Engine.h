@@ -1,6 +1,7 @@
 #pragma once
 #include "Graphics.h"
 #include "GameFont.h"
+#include "Timer.h"
 
 class Engine
 {
@@ -20,5 +21,6 @@ public:
     }
 private:
     bool is_finish = false;
+	Timer timer;
     //Graphics graphics;
 };

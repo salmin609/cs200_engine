@@ -1,20 +1,20 @@
 ﻿  Graphics.cpp
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(217,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(217,31): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(217,31): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(217,31): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(217,31): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(218,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(218,47): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(218,47): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(218,47): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(218,47): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(219,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(219,45): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(219,45): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(219,45): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(219,45): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(353,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(354,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(249,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(249,31): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(249,31): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(249,31): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(249,31): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(250,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(250,47): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(250,47): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(250,47): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(250,47): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(251,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(251,45): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(251,45): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(251,45): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(251,45): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(389,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(390,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe

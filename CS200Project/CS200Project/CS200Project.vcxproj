@@ -153,7 +153,6 @@
     <ClCompile Include="Adapter_Reader.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
-    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Constant_Buffer.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameFont.cpp" />
@@ -167,6 +166,7 @@
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="Text.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapter_Reader.h" />
@@ -189,6 +189,7 @@
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="Text.hpp" />
     <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="Timer.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertex_Buffer.h" />
     <ClInclude Include="Win32OS.h" />

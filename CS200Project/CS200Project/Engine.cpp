@@ -23,6 +23,7 @@ Engine::~Engine()
 void Engine::Init()
 {
     application = Application::Get_Application();
+	timer.Start();
 
     Object* obj_first = new Object();
     obj_first->Set_Name("rectangle");
@@ -57,6 +58,12 @@ void Engine::Init()
 
 void Engine::Update()
 {
+	//float dt = timer.Get_Milli_Seconds();
+
+
+	
+	//timer.Restart();
+	
     application->Update();
     Object_Manager::Get_ObjectManager()->Update();
 	Graphics::Get_Graphic()->Camera_Movement();

@@ -12,6 +12,7 @@
 #include "Constant_Buffer.h"
 #include "Object.h"
 #include "GameFont.h"
+#include "Timer.h"
 
 enum State
 {
@@ -78,9 +79,22 @@ private:
 
     Microsoft::WRL::ComPtr<ID3D11SamplerState> sampler_state;
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> my_texture;
+	
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_arm;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_arm_right;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_leg;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_leg_right;
 
     Camera camera;
     Object obj;
+	Object* sang_rusuo;
+	Object* sang_rusuo_left_arm;
+	Object* sang_rusuo_right_arm;
+	Object* sang_rusuo_left_leg;
+	Object* sang_rusuo_right_leg;
+	Object* sang_rusuo_last;
+	Object* last;
 
 	GameFont* font;
 	GameFont* font_sec;
@@ -96,5 +110,13 @@ private:
 
 	GameFont* font_screenshot;
 
+	GameFont* font_hierachy;
+	GameFont* font_hierachy_sec;
+	GameFont* font_hierachy_third;
+	GameFont* font_hierachy_fourth;
+	GameFont* font_hierachy_fifth;
+	
+	Timer timer;
 	State curr_state = level1;
+	float seconds = 0.f;
 };

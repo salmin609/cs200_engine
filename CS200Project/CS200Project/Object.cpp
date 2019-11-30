@@ -64,21 +64,97 @@ void Object::Update()
         if(input.Is_Key_Pressed(Keyboard::W))
         {
             this->translation.y += 0.03;
+			if (Hierachy_left_leg != nullptr)
+			{
+				Hierachy_left_leg->Get_Scale().x += 0.01f;
+				Hierachy_left_leg->Get_Scale().y += 0.01f;
+			}
+			if (Hierachy_right_leg != nullptr)
+			{
+				Hierachy_right_leg->Get_Scale().x += 0.01f;
+				Hierachy_right_leg->Get_Scale().y += 0.01f;
+			}
+			if (Hierachy_left_arm != nullptr)
+			{
+				Hierachy_left_arm->Get_Scale().x += 0.01f;
+				Hierachy_left_arm->Get_Scale().y += 0.01f;
+			}
+			if (Hierachy_right_arm != nullptr)
+			{
+				Hierachy_right_arm->Get_Scale().x += 0.01f;
+				Hierachy_right_arm->Get_Scale().y += 0.01f;
+			}
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::A))
         {
             this->translation.x -= 0.03;
+
+			if (Hierachy_left_leg != nullptr)
+			{
+				Hierachy_left_leg->Get_Angle() -= 0.01f;
+			}
+			if(Hierachy_right_leg != nullptr)
+			{
+				Hierachy_right_leg->Get_Angle() += 0.01f;
+			}
+        	if(Hierachy_left_arm != nullptr)
+        	{
+				Hierachy_left_arm->Get_Angle() -= 0.01f;
+        	}
+			if (Hierachy_right_arm != nullptr)
+			{
+				Hierachy_right_arm->Get_Angle() += 0.01f;
+			}
+        	
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::S))
         {
             this->translation.y -= 0.03;
+			if (Hierachy_left_leg != nullptr)
+			{
+				Hierachy_left_leg->Get_Scale().x -= 0.01f;
+				Hierachy_left_leg->Get_Scale().y -= 0.01f;
+			}
+			if (Hierachy_right_leg != nullptr)
+			{
+				Hierachy_right_leg->Get_Scale().x -= 0.01f;
+				Hierachy_right_leg->Get_Scale().y -= 0.01f;
+			}
+			if (Hierachy_left_arm != nullptr)
+			{
+				Hierachy_left_arm->Get_Scale().x -= 0.01f;
+				Hierachy_left_arm->Get_Scale().y -= 0.01f;
+			}
+			if (Hierachy_right_arm != nullptr)
+			{
+				Hierachy_right_arm->Get_Scale().x -= 0.01f;
+				Hierachy_right_arm->Get_Scale().y -= 0.01f;
+			}
             Update_World_Matrix();
         }
         if (input.Is_Key_Pressed(Keyboard::D))
         {
             this->translation.x += 0.03;
+
+			if (Hierachy_left_leg != nullptr)
+			{
+				Hierachy_left_leg->Get_Angle() += 0.01f;
+			}
+			if (Hierachy_right_leg != nullptr)
+			{
+				Hierachy_right_leg->Get_Angle() -= 0.01f;
+			}
+			if (Hierachy_left_arm != nullptr)
+			{
+				Hierachy_left_arm->Get_Angle() += 0.01f;
+			}
+			if (Hierachy_right_arm != nullptr)
+			{
+				Hierachy_right_arm->Get_Angle() -= 0.01f;
+			}
+        	
             Update_World_Matrix();
         }
         if(input.Is_Key_Pressed(Keyboard::NUM_1))
@@ -111,12 +187,13 @@ void Object::Update()
 			this->angle -= 0.1f;
 			Update_World_Matrix();
 		}
+
 		
     }
 }
 
 bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,
-    ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader)
+    ID3D11ShaderResourceView * texture ,ConstantBuffer<Constant_VS_vertex_shader>& constant_vertexshader, float z)
 {
 	this->angle = 0.0f;
 	
@@ -131,10 +208,10 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         this->shape = Rectangle;
         Vertex v[] =
         {
-                Vertex(-0.5f,  -0.5f, -0.5f, 1.f,1.f), //FRONT Bottom Left   - [0]
-                Vertex(-0.5f,   0.5f, -0.5f, 1.f,0.f), //FRONT Top Left      - [1]
-                Vertex(0.5f,   0.5f, -0.5f, 0.f,0.f), //FRONT Top Right     - [2]
-                Vertex(0.5f,  -0.5f, -0.5f, 0.f,1.f)
+                Vertex(-0.5f,  -0.5f, z, 1.f,1.f), //FRONT Bottom Left   - [0]
+                Vertex(-0.5f,   0.5f, z, 1.f,0.f), //FRONT Top Left      - [1]
+                Vertex(0.5f,   0.5f, z, 0.f,0.f), //FRONT Top Right     - [2]
+                Vertex(0.5f,  -0.5f, z, 0.f,1.f)
         };
 		this->translation.x = -2.0f;
 		
@@ -286,6 +363,39 @@ void Object::Draw(const matrix4<float>& view_projection_matrix)
 	
     Update_World_Matrix();
     this->constant_buffer_vertex_shader->data.mat = this->world_transform * view_projection_matrix;
+
+	if(Hierachy_left_leg != nullptr)
+	{
+		Hierachy_left_leg->Get_Translation().x = this->translation.x - 1.f;
+		Hierachy_left_leg->Get_Translation().y = this->translation.y - 1.3f;
+		Hierachy_left_leg->Draw(view_projection_matrix);
+	}
+	if(Hierachy_left_arm != nullptr)
+	{
+		Hierachy_left_arm->Get_Translation().x = this->translation.x - 1.f;
+		Hierachy_left_arm->Get_Translation().y = this->translation.y - 0.3f;
+		Hierachy_left_arm->Draw(view_projection_matrix);
+	}
+	if (Hierachy_right_arm != nullptr)
+	{
+		Hierachy_right_arm->Get_Translation().x = this->translation.x + 1.f;
+		Hierachy_right_arm->Get_Translation().y = this->translation.y - 0.3f;
+		Hierachy_right_arm->Draw(view_projection_matrix);
+	}
+	if (Hierachy_right_leg != nullptr)
+	{
+		Hierachy_right_leg->Get_Translation().x = this->translation.x + 1.f;
+		Hierachy_right_leg->Get_Translation().y = this->translation.y - 1.3f;
+		Hierachy_right_leg->Draw(view_projection_matrix);
+	}
+
+	if (Hierachy_last != nullptr)
+	{
+		Hierachy_last->Get_Translation().x = this->translation.x;
+		Hierachy_last->Get_Translation().y = this->translation.y;
+		Hierachy_last->Draw(view_projection_matrix);
+	}
+	
     this->constant_buffer_vertex_shader->ApplyChange();
     this->device_context->VSSetConstantBuffers(0, 1, this->constant_buffer_vertex_shader->GetAddressOf());
     this->device_context->PSSetShaderResources(0, 1, &this->texture);
