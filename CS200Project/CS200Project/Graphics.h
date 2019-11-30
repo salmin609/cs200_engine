@@ -122,6 +122,8 @@ private:
 	GameFont* font_hierachy_fifth;
 
 	Animation_Object* animation;
+	GameFont* font_animation;
+	GameFont* font_animation_sec;
 	
 	Timer timer;
 	State curr_state = level1;

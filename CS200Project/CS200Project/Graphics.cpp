@@ -116,15 +116,13 @@ void Graphics::Render_Frame()
 	}
 	else if(curr_state == level3)
 	{
-		//dt = timer.Get_Milli_Seconds();
-
-		//if(dt > 1000.f)
-		//{
-		//	std::cout << "chcjckcc" << std::endl;
-		//	timer.Restart();
-		//}
 		animation->Draw(camera.Get_Cam_Matrix(), timer);
 		animation->Update();
+
+		last->Draw(camera.Get_Cam_Matrix());
+
+		font_animation->Update();
+		font_animation_sec->Update();
 	}
 	
 	//this->swap_chain->Present(1, NULL); //VSYNC
@@ -688,7 +686,16 @@ bool Graphics::Initialize_Scene()
 		font_hierachy_fourth->Init(device.Get(), device_context.Get(), this->constant_buffer);
 		font_hierachy_fourth->Set_Text(L"Scale hierachy : W S", char_pos);
 
+		char_pos = 0.5f;
+		font_animation = new GameFont();
+		font_animation->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_animation->Set_Text(L"Animation", char_pos);
 
+		char_pos -= 0.6f;
+		font_animation_sec = new GameFont();
+		font_animation_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
+		font_animation_sec->Set_Text(L"How cute!", char_pos);
+		
 		for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
 		{
 			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);

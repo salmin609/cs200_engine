@@ -13,7 +13,7 @@ void Animation_Object::Draw(const matrix4<float>& view_projection_matrix, Timer&
 	this->device_context->IASetVertexBuffers(0, 1, this->vertex_buffer.Get_Address(), this->vertex_buffer.Stride_Ptr(), &offset);
 	int check = this->index_buffer.Buffer_Size();
 	this->device_context->DrawIndexed(frame, curr_frame, 0);
-	if(timer.Get_Milli_Seconds() > 200.f)
+	if(timer.Get_Milli_Seconds() > 100.f)
 	{
 		curr_frame += frame;
 		timer.Restart();
