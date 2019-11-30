@@ -46,12 +46,12 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 void Graphics::Render_Frame()
 {
 
-	if(seconds > 1000.f)
+	if (seconds > 1000.f)
 	{
 		std::cout << "check" << std::endl;
 		seconds = 0.f;
 	}
-	
+
 	float back_ground[] = { 0.0f, 0.0f, 0.0f, 1.0f };
 	this->device_context->ClearRenderTargetView(this->render_target_view.Get(), back_ground);
 	this->device_context->ClearDepthStencilView(this->depth_stencil_view.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
@@ -92,7 +92,7 @@ void Graphics::Render_Frame()
 		static std::string fps = "FPS : 0";
 		fps_counter += 1;
 
-		if(timer.Get_Milli_Seconds() > 1000.f)
+		if (timer.Get_Milli_Seconds() > 1000.f)
 		{
 			fps = "FPS: " + std::to_string(fps_counter);
 			std::cout << fps << std::endl;
@@ -100,21 +100,21 @@ void Graphics::Render_Frame()
 			timer.Restart();
 		}
 	}
-	else if(curr_state == level2)
+	else if (curr_state == level2)
 	{
 		sang_rusuo->Draw(camera.Get_Cam_Matrix());
 
 		sang_rusuo->Update();
 
-		
+
 		last->Draw(camera.Get_Cam_Matrix());
-		
+
 		font_hierachy->Update();
 		font_hierachy_sec->Update();
 		font_hierachy_third->Update();
 		font_hierachy_fourth->Update();
 	}
-	else if(curr_state == level3)
+	else if (curr_state == level3)
 	{
 		animation->Draw(camera.Get_Cam_Matrix(), timer);
 		animation->Update();
@@ -124,7 +124,7 @@ void Graphics::Render_Frame()
 		font_animation->Update();
 		font_animation_sec->Update();
 	}
-	
+
 	//this->swap_chain->Present(1, NULL); //VSYNC
 }
 
@@ -260,13 +260,13 @@ void Graphics::Camera_Movement()
 		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
 	}
 
-	if(input.Is_Key_Triggered(Keyboard::P))
+	if (input.Is_Key_Triggered(Keyboard::P))
 	{
-		if(curr_state == level1)
+		if (curr_state == level1)
 		{
 			curr_state = level2;
 		}
-		else if(curr_state == level2)
+		else if (curr_state == level2)
 		{
 			curr_state = level3;
 		}
@@ -496,6 +496,11 @@ bool Graphics::InitializeShaders()
 			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
 			0
 		},
+		/*{
+			"TEXCOORD", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
+			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
+			0
+		},*/
 		{
 			"SLOT", 0, DXGI_FORMAT::DXGI_FORMAT_R32G32_FLOAT,
 			0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_CLASSIFICATION::D3D11_INPUT_PER_VERTEX_DATA,
@@ -533,7 +538,7 @@ bool Graphics::InitializeShaders()
 bool Graphics::Initialize_Scene()
 {
 	{
-		
+
 		HRESULT hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\dicksean.png", nullptr, my_texture.GetAddressOf());
 
 		if (FAILED(hr))
@@ -549,7 +554,7 @@ bool Graphics::Initialize_Scene()
 			std::cout << "fail to create wic texture ill from file" << std::endl;
 			return false;
 		}
-		
+
 		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\arm2.png", nullptr, sanglusuo_arm.GetAddressOf());
 
 		if (FAILED(hr))
@@ -591,7 +596,7 @@ bool Graphics::Initialize_Scene()
 			return false;
 		}
 
-		
+
 
 		hr = this->constant_buffer.Initialize(this->device.Get(), this->device_context.Get());
 		if (FAILED(hr))
@@ -695,7 +700,7 @@ bool Graphics::Initialize_Scene()
 		font_animation_sec = new GameFont();
 		font_animation_sec->Init(device.Get(), device_context.Get(), this->constant_buffer);
 		font_animation_sec->Set_Text(L"How cute!", char_pos);
-		
+
 		for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
 		{
 			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
@@ -716,32 +721,32 @@ bool Graphics::Initialize_Scene()
 		sang_rusuo_left_arm->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_arm.Get(), this->constant_buffer, -0.3f);
 		sang_rusuo_left_arm->Get_Translation().x = -0.7f;
 		sang_rusuo_left_arm->Get_Translation().y = 0.f;
-		
+
 		sang_rusuo_right_arm = new Object();
 		sang_rusuo_right_arm->Set_Name("rectangle");
 		sang_rusuo_right_arm->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_arm_right.Get(), this->constant_buffer, -0.5f);
 		sang_rusuo_right_arm->Get_Translation().x = 0.7f;
 		sang_rusuo_right_arm->Get_Translation().y = 0.f;
-		
+
 		sang_rusuo_left_leg = new Object();
 		sang_rusuo_left_leg->Set_Name("rectangle");
-		sang_rusuo_left_leg->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg.Get(), this->constant_buffer,-0.5f);
+		sang_rusuo_left_leg->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg.Get(), this->constant_buffer, -0.5f);
 		sang_rusuo_left_leg->Get_Translation().x = -0.7f;
 		sang_rusuo_left_leg->Get_Translation().y = -0.7f;
-		
+
 		sang_rusuo_right_leg = new Object();
 		sang_rusuo_right_leg->Set_Name("rectangle");
 		sang_rusuo_right_leg->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg_right.Get(), this->constant_buffer, -0.5f);
 		sang_rusuo_right_leg->Get_Translation().x = 0.7f;
 		sang_rusuo_right_leg->Get_Translation().y = -0.7f;
-		
+
 		sang_rusuo_last = new Object();
 		sang_rusuo_last->Set_Name("dot");
 		sang_rusuo_last->Initialize(this->device.Get(), this->device_context.Get(), this->sanglusuo_leg_right.Get(), this->constant_buffer, -0.5f);
 		sang_rusuo_last->Get_Translation().x = 0.f;
 		sang_rusuo_last->Get_Translation().y = 0.3f;
 
-		
+
 		sang_rusuo->Set_Left_Arm(sang_rusuo_left_arm);
 		sang_rusuo->Set_Right_Arm(sang_rusuo_right_arm);
 		sang_rusuo->Set_Left_Leg(sang_rusuo_left_leg);
@@ -751,7 +756,7 @@ bool Graphics::Initialize_Scene()
 		last = new Object();
 		last->Set_Name("dot");
 		last->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
-		
+
 	}
 	///////////////////////////////////////////////////////////////////////
 	///
@@ -762,6 +767,6 @@ bool Graphics::Initialize_Scene()
 	}
 
 	///////////////////////////////////////////////////////////////////////
-	
+
 	return true;
 }
