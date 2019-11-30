@@ -15,38 +15,10 @@ C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(4
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         [
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :             T=Vertex
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78): message : 컴파일되는 함수 템플릿 인스턴스화 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78): message :             T=Vertex
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(78): message :         ]
-  Graphics.cpp
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(85): message : 컴파일되는 함수 템플릿 인스턴스화 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'에 대한 참조를 확인하세요.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(85): message :         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(85): message :         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(85): message :             T=Vertex
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Animation_Object.cpp(85): message :         ]
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Object.h(129): message : 컴파일되는 클래스 템플릿 인스턴스화 'VertexBuffer<Vertex>'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(254,31): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(255,47): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:             _Ty=COLORREF
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(256,45): warning C4244:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(398,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  코드를 생성하고 있습니다...
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(399,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  LINK : C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe을(를) 찾을 수 없거나 마지막 증분 링크에 의해 빌드되지 않았습니다. 전체 링크를 수행하고 있습니다.
-DirectXTK.lib(CommonStates.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(CommonStates.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(BinaryReader.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(BinaryReader.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(pch.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(pch.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(SpriteBatch.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(SpriteBatch.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(SpriteFont.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(SpriteFont.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(VertexTypes.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(VertexTypes.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
-DirectXTK.lib(WICTextureLoader.obj) : warning LNK4099: 'DirectXTK.pdb' PDB를 'DirectXTK.lib(WICTextureLoader.obj)' 또는 'C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\DirectXTK.pdb'에서 찾을 수 없습니다. 디버그 정보가 없는 것처럼 개체를 링크합니다.
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe

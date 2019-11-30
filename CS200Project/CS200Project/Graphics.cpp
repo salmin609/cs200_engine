@@ -583,7 +583,7 @@ bool Graphics::Initialize_Scene()
 		}
 
 
-		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\animation.png", nullptr, animation_sprite.GetAddressOf());
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\ani_walker.png", nullptr, animation_sprite.GetAddressOf());
 
 		if (FAILED(hr))
 		{
@@ -758,7 +758,7 @@ bool Graphics::Initialize_Scene()
 	///Level3
 	{
 		animation = new Animation_Object();
-		animation->Initialize(this->device.Get(), this->device_context.Get(), this->animation_sprite.Get(), this->constant_buffer, 6, 4, 2);
+		animation->Initialize(this->device.Get(), this->device_context.Get(), this->animation_sprite.Get(), this->constant_buffer, 16, 8, 2);
 	}
 
 	///////////////////////////////////////////////////////////////////////

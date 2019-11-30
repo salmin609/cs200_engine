@@ -12,10 +12,10 @@ void Animation_Object::Draw(const matrix4<float>& view_projection_matrix, Timer&
 	UINT offset = 0;
 	this->device_context->IASetVertexBuffers(0, 1, this->vertex_buffer.Get_Address(), this->vertex_buffer.Stride_Ptr(), &offset);
 	int check = this->index_buffer.Buffer_Size();
-	this->device_context->DrawIndexed(frame, curr_frame, 0);
+	this->device_context->DrawIndexed(6, curr_frame, 0);
 	if(timer.Get_Milli_Seconds() > 100.f)
 	{
-		curr_frame += frame;
+		curr_frame += 6;
 		timer.Restart();
 		if(curr_frame >= 6 * frame)
 		{
@@ -44,11 +44,20 @@ bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* dev
 	float start_u = 0.f;
 	float increment = 1.0f / static_cast<float>(frame_in_line);
 	float start_v = 0.0f;
+	int line_count = line;
 	
 	
 
 	for(int i = 0; i < frame; i++)
 	{
+
+		if (i >= frame_in_line && line_count > 1)
+		{
+			start_v += line_increment;
+			start_u = 0.f;
+			line_count--;
+		}
+		
 		v[index] = Vertex(-0.5f, 0.5f, -0.5f, start_u, start_v);
 		v[index + 1] = Vertex(-0.5f, -0.5f, -0.5f, start_u, start_v + line_increment);
 		v[index + 2] = Vertex(0.5f, -0.5f, -0.5f, start_u + increment, start_v + line_increment);
@@ -62,14 +71,9 @@ bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* dev
 		indices[index + 3] = index + 3;
 		indices[index + 4] = index + 4;
 		indices[index + 5] = index + 5;
-		
-		if(i >= frame_in_line)
-		{
-			start_v += line_increment;
-		}
 
 		start_u += increment;
-		
+
 		index += 6;
 	}
 	
