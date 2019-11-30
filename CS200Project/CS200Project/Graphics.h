@@ -13,11 +13,13 @@
 #include "Object.h"
 #include "GameFont.h"
 #include "Timer.h"
+#include "Animation_Object.h"
 
 enum State
 {
 	level1,
-	level2
+	level2,
+	level3
 };
 
 class Graphics
@@ -86,6 +88,9 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_leg;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_leg_right;
 
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> animation_sprite;
+
+	
     Camera camera;
     Object obj;
 	Object* sang_rusuo;
@@ -115,8 +120,11 @@ private:
 	GameFont* font_hierachy_third;
 	GameFont* font_hierachy_fourth;
 	GameFont* font_hierachy_fifth;
+
+	Animation_Object* animation;
 	
 	Timer timer;
 	State curr_state = level1;
 	float seconds = 0.f;
+	float dt;
 };

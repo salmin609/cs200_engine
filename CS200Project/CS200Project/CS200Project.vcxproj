@@ -151,6 +151,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Adapter_Reader.cpp" />
+    <ClCompile Include="Animation_Object.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
     <ClCompile Include="Constant_Buffer.cpp" />
@@ -170,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Adapter_Reader.h" />
+    <ClInclude Include="Animation_Object.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="BitmapFont.hpp" />
     <ClInclude Include="Camera.h" />

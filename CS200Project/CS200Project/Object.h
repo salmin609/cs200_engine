@@ -118,7 +118,7 @@ public:
 		return angle;
     }
 
-private:
+protected:
     void Update_World_Matrix();
 
     ID3D11Device* device = nullptr;

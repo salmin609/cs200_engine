@@ -114,8 +114,20 @@ void Graphics::Render_Frame()
 		font_hierachy_third->Update();
 		font_hierachy_fourth->Update();
 	}
+	else if(curr_state == level3)
+	{
+		//dt = timer.Get_Milli_Seconds();
+
+		//if(dt > 1000.f)
+		//{
+		//	std::cout << "chcjckcc" << std::endl;
+		//	timer.Restart();
+		//}
+		animation->Draw(camera.Get_Cam_Matrix(), timer);
+		animation->Update();
+	}
 	
-	this->swap_chain->Present(1, NULL); //VSYNC
+	//this->swap_chain->Present(1, NULL); //VSYNC
 }
 
 
@@ -255,6 +267,10 @@ void Graphics::Camera_Movement()
 		if(curr_state == level1)
 		{
 			curr_state = level2;
+		}
+		else if(curr_state == level2)
+		{
+			curr_state = level3;
 		}
 		else
 		{
@@ -568,6 +584,15 @@ bool Graphics::Initialize_Scene()
 			return false;
 		}
 
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\animation.png", nullptr, animation_sprite.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture animation from file" << std::endl;
+			return false;
+		}
+
 		
 
 		hr = this->constant_buffer.Initialize(this->device.Get(), this->device_context.Get());
@@ -719,8 +744,17 @@ bool Graphics::Initialize_Scene()
 		last = new Object();
 		last->Set_Name("dot");
 		last->Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
-		///////////////////////////////////////////////////////////////////////
+		
 	}
+	///////////////////////////////////////////////////////////////////////
+	///
+	///Level3
+	{
+		animation = new Animation_Object();
+		animation->Initialize(this->device.Get(), this->device_context.Get(), this->animation_sprite.Get(), this->constant_buffer);
+	}
+
+	///////////////////////////////////////////////////////////////////////
 	
 	return true;
 }
