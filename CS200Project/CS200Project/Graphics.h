@@ -41,6 +41,7 @@ public:
         const float color[] = { red, green, blue, 1.0f };
         device_context->ClearRenderTargetView(render_target_view.Get(), color);
     }
+	void Should_Quit();
     void Toggle_Full_Screen(bool toggle);
     void Toggle_Vsync(bool toggle);
     void Camera_Movement();
@@ -135,4 +136,6 @@ private:
 	State curr_state = level1;
 	float seconds = 0.f;
 	float dt;
+
+	const int test_num = 5000;
 };

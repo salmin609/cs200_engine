@@ -9,10 +9,12 @@ void Instance_Object::Draw(const matrix4<float>& view_projection_matrix)
 	this->device_context->IASetIndexBuffer(this->index_buffer.Get(), DXGI_FORMAT::DXGI_FORMAT_R32_UINT, 0);
 	UINT offset = 0;
 	this->device_context->IASetVertexBuffers(0, 1, this->vertex_buffer.Get_Address(), this->vertex_buffer.Stride_Ptr(), &offset);
-	int check = this->index_buffer.Buffer_Size();
-	this->device_context->DrawIndexed(this->index_buffer.Buffer_Size() * 1000, 0, 0);
-	this->device_context->DrawIndexedInstanced(this->index_buffer.Buffer_Size() * 1000, 1000,0,0,0);
-	this->device_context->DrawInstanced(this->index_buffer.Buffer_Size() * 1000, 1000,0,0);
+	int check = 5000;
+	
+	//this->device_context->DrawIndexed(this->index_buffer.Buffer_Size() * check, 0, 0);
+	//this->device_context->DrawInstanced(this->index_buffer.Buffer_Size() * check, check, 0, 0);
+	this->device_context->DrawIndexedInstanced(this->index_buffer.Buffer_Size() * check, check,0,0,0);
+	
 }
 
 bool Instance_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_context,

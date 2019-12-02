@@ -68,6 +68,10 @@ void Application::Update()
 
         is_vsync_on = !is_vsync_on;
     }
+	else if(input.Is_Key_Triggered(Keyboard::ESC))
+	{
+		window.CloseWindow();
+	}
     //else if(input.Is_Key_Triggered(Keyboard::))
 
     

@@ -48,7 +48,7 @@ enum Keyboard
     K_Left = 37,
     K_Up = 38,
     K_Down = 40,
-
+	ESC = 27,
     None
 };
 

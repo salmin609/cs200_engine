@@ -114,6 +114,18 @@ void Graphics::Render_Frame()
 		font_hierachy_sec->Update();
 		font_hierachy_third->Update();
 		font_hierachy_fourth->Update();
+
+		static int fps_counter = 0;
+		static std::string fps = "FPS : 0";
+		fps_counter += 1;
+
+		if (timer.Get_Milli_Seconds() > 1000.f)
+		{
+			fps = "FPS: " + std::to_string(fps_counter);
+			std::cout << fps << std::endl;
+			fps_counter = 0;
+			timer.Restart();
+		}
 	}
 	else if (curr_state == level3)
 	{
@@ -124,18 +136,44 @@ void Graphics::Render_Frame()
 
 		font_animation->Update();
 		font_animation_sec->Update();
+
+		
 	}
 	else if(curr_state == level4)
 	{
 		instance->Draw(camera.Get_Cam_Matrix());
 		
 		last->Draw(camera.Get_Cam_Matrix());
+
+		static int fps_counter = 0;
+		static std::string fps = "FPS : 0";
+		fps_counter += 1;
+
+		if (timer.Get_Milli_Seconds() > 1000.f)
+		{
+			fps = "FPS: " + std::to_string(fps_counter);
+			std::cout << fps << std::endl;
+			fps_counter = 0;
+			timer.Restart();
+		}
 	}
 	else if(curr_state == level5)
 	{
-		for(int i = 0 ; i < 1000; i++)
+		for(int i = 0 ; i < test_num; i++)
 		{
 			test_opt[i].Draw(camera.Get_Cam_Matrix());
+		}
+
+		static int fps_counter = 0;
+		static std::string fps = "FPS : 0";
+		fps_counter += 1;
+
+		if (timer.Get_Milli_Seconds() > 1000.f)
+		{
+			fps = "FPS: " + std::to_string(fps_counter);
+			std::cout << fps << std::endl;
+			fps_counter = 0;
+			timer.Restart();
 		}
 	}
 
@@ -148,28 +186,33 @@ void Graphics::End_Frame()
 	swap_chain->Present(1u, 0u);
 }
 
+void Graphics::Should_Quit()
+{
+	
+}
+
 void Graphics::Toggle_Full_Screen(bool toggle)
 {
 	swap_chain->SetFullscreenState(toggle, nullptr);
-	DXGI_MODE_DESC zero_refresh = swap_chain_desc.BufferDesc;
-	zero_refresh.RefreshRate.Numerator = 0;
-	zero_refresh.RefreshRate.Denominator = 0;
-	BOOL is_full_screen;
-	swap_chain->GetFullscreenState(&is_full_screen, NULL);
-	swap_chain->ResizeTarget(&zero_refresh);
-	Microsoft::WRL::ComPtr<ID3D11Texture2D> back_buffer;
-	swap_chain->ResizeBuffers(0, 0, 0, DXGI_FORMAT_UNKNOWN, DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH);
-	swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(back_buffer.GetAddressOf()));
-	device->CreateRenderTargetView(back_buffer.Get(), NULL, &render_target_view);
-
-
-
-	//Initialize(Application::Get_Application()->Get_Window().Get_Hnalde_Window(), 1280, 960);
 }
 
 void Graphics::Toggle_Vsync(bool toggle)
 {
-	this->swap_chain->Present(toggle, NULL);
+	//this->swap_chain->Present(toggle, NULL);
+
+	if(toggle)
+	{
+		std::cout << "on" << std::endl;
+		swap_chain_desc.BufferDesc.RefreshRate.Numerator = 100;
+		swap_chain_desc.BufferDesc.RefreshRate.Denominator = 1;
+	}
+	else
+	{
+		std::cout << "off" << std::endl;
+		swap_chain_desc.BufferDesc.RefreshRate.Numerator = 0;
+		swap_chain_desc.BufferDesc.RefreshRate.Denominator = 1;
+
+	}
 }
 
 
@@ -793,12 +836,15 @@ bool Graphics::Initialize_Scene()
 	}
 
 	///////////////////////////////////////////////////////////////////////
-	test_opt = new Object[1000];
-	test_opt->Set_Name("rectangle");
-
-	for(int i = 0; i < 1000; i++)
+	test_opt = new Object[test_num];
+	
+	float x_off = 1.f;
+	for(int i = 0; i < test_num; i++)
 	{
+		test_opt[i].Set_Name("rectangle");
 		test_opt[i].Initialize(this->device.Get(), this->device_context.Get(), this->my_texture.Get(), this->constant_buffer);
+		test_opt[i].Get_Translation().x = i % 100;
+		test_opt[i].Get_Translation().y = i / 100;
 	}
 	
 	return true;

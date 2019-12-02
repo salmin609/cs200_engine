@@ -40,7 +40,7 @@ void PlatformImpl::CreateAndShowWindow(const wchar_t* title, int w, int h)
         MessageBox(nullptr, L"failed to register window class",
             L"Error!", MB_ICONERROR);
     }
-    const DWORD window_style = WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU;
+    const DWORD window_style = WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU | WS_MAXIMIZEBOX | WS_THICKFRAME;
     int x = 0, y = 0;
     const DWORD default_extra_style = 0L;
     const HWND no_parent_window = nullptr;
@@ -57,7 +57,7 @@ void PlatformImpl::CreateAndShowWindow(const wchar_t* title, int w, int h)
     wr.right = wr.left + w;
     wr.bottom = wr.top + h;
 
-    AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE);
+    AdjustWindowRect(&wr, WS_CAPTION | WS_MINIMIZEBOX | WS_SYSMENU, FALSE | WS_MAXIMIZEBOX | WS_THICKFRAME);
 
     windowHandle =
         CreateWindowEx(default_extra_style, WindowClassName,

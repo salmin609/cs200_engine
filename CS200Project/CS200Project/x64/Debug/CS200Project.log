@@ -1,24 +1,37 @@
-﻿  Instance_Object.cpp
+﻿  Application.cpp
+  Engine.cpp
 C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267: '초기화 중': 'size_t'에서 '_Ty'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         with
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         [
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:             _Ty=UINT
-C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.23.28105\include\memory(2056,59): warning C4267:         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message : 컴파일되는 함수 템플릿 인스턴스화 'std::unique_ptr<UINT,std::default_delete<_Ty>> std::make_unique<UINT,size_t,0>(size_t &&)'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :             _Ty=UINT
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(47): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message : 클래스 템플릿 멤버 함수 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'을(를) 컴파일하는 중입니다.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :             T=Vertex
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Vertex_Buffer.h(45): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Instance_Object.cpp(36): message : 컴파일되는 함수 템플릿 인스턴스화 'HRESULT VertexBuffer<Vertex>::Initialize(ID3D11Device *,T *,UINT)'에 대한 참조를 확인하세요.
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Instance_Object.cpp(36): message :         with
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Instance_Object.cpp(36): message :         [
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Instance_Object.cpp(36): message :             T=Vertex
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Instance_Object.cpp(36): message :         ]
-C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Object.h(129): message : 컴파일되는 클래스 템플릿 인스턴스화 'VertexBuffer<Vertex>'에 대한 참조를 확인하세요.
+  Graphics.cpp
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(311,31): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(311,31): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(311,31): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(311,31): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(311,31): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(312,47): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(312,47): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(312,47): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(312,47): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(312,47): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(313,45): warning C4244: '=': '_Ty'에서 'Color4ub::unsigned_byte'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(313,45): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(313,45): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(313,45): warning C4244:             _Ty=COLORREF
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(313,45): warning C4244:         ]
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(463,24): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(464,25): warning C4244: '=': 'int'에서 'FLOAT'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(846,39): warning C4244: '=': 'int'에서 'T'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(846,39): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(846,39): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(846,39): warning C4244:             T=float
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(846,39): warning C4244:         ]
+  main.cpp
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(847,39): warning C4244: '=': 'int'에서 'T'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(847,39): warning C4244:         with
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(847,39): warning C4244:         [
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(847,39): warning C4244:             T=float
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\CS200Project\Graphics.cpp(847,39): warning C4244:         ]
+  코드를 생성하고 있습니다...
+C:\Users\salmin\Desktop\cs200_engine\CS200Project\Math_Lib\matrix3.hpp(7,10): warning C4067: 전처리기 지시문 다음에 예기치 않은 토큰이 있습니다. 줄 바꿈 문자가 필요합니다.
   CS200Project.vcxproj -> C:\Users\salmin\Desktop\cs200_engine\CS200Project\x64\Debug\CS200Project.exe
