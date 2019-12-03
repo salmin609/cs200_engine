@@ -83,6 +83,9 @@ bool Animation_Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* dev
 	hr = this->index_buffer.Initialize(this->device, indices, 6 * frame);
 	this->scale = { 3,3};
 	this->Update_World_Matrix();
+
+	delete[] v;
+	delete[] indices;
 	
 
 	return true;

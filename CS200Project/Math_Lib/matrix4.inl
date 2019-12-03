@@ -184,7 +184,6 @@ constexpr matrix4<T> MATRIX4::build_translation(float translate_x, float transla
 	result_matrix.column2.z = 1.0f;
 	result_matrix.column3.x = translate_x;
 	result_matrix.column3.y = translate_y;
-	result_matrix.column3.z = 1.f;
 	result_matrix.column3.w = 1.0f;
 
 	return result_matrix;

@@ -10,6 +10,7 @@
 #include "Color4ub.hpp"
 #include "GameFont.h"
 #include "Instance_Object.h"
+#include "Camera.h"
 
 
 Graphics* Graphics::graphic = nullptr;
@@ -40,6 +41,8 @@ bool Graphics::Initialize(HWND hwnd, int width, int height)
 		return false;
 	}
 	timer.Start();
+
+	camera = new Camera();
 
 	return true;
 }
@@ -73,7 +76,7 @@ void Graphics::Render_Frame()
 	{
 		for (int i = 0; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
 		{
-			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera.Get_Cam_Matrix());
+			Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i]->Draw(camera->Get_Cam_Matrix());
 		}
 
 		font->Update();
@@ -103,12 +106,12 @@ void Graphics::Render_Frame()
 	}
 	else if (curr_state == level2)
 	{
-		sang_rusuo->Draw(camera.Get_Cam_Matrix());
+		sang_rusuo->Draw(camera->Get_Cam_Matrix());
 
 		sang_rusuo->Update();
 
 
-		last->Draw(camera.Get_Cam_Matrix());
+		last->Draw(camera->Get_Cam_Matrix());
 
 		font_hierachy->Update();
 		font_hierachy_sec->Update();
@@ -129,10 +132,10 @@ void Graphics::Render_Frame()
 	}
 	else if (curr_state == level3)
 	{
-		animation->Draw(camera.Get_Cam_Matrix(), timer);
+		animation->Draw(camera->Get_Cam_Matrix(), timer);
 		animation->Update();
 
-		last->Draw(camera.Get_Cam_Matrix());
+		last->Draw(camera->Get_Cam_Matrix());
 
 		font_animation->Update();
 		font_animation_sec->Update();
@@ -141,9 +144,9 @@ void Graphics::Render_Frame()
 	}
 	else if(curr_state == level4)
 	{
-		instance->Draw(camera.Get_Cam_Matrix());
+		instance->Draw(camera->Get_Cam_Matrix());
 		
-		last->Draw(camera.Get_Cam_Matrix());
+		last->Draw(camera->Get_Cam_Matrix());
 
 		static int fps_counter = 0;
 		static std::string fps = "FPS : 0";
@@ -161,7 +164,7 @@ void Graphics::Render_Frame()
 	{
 		for(int i = 0 ; i < test_num; i++)
 		{
-			test_opt[i].Draw(camera.Get_Cam_Matrix());
+			test_opt[i].Draw(camera->Get_Cam_Matrix());
 		}
 
 		static int fps_counter = 0;
@@ -188,7 +191,38 @@ void Graphics::End_Frame()
 
 void Graphics::Should_Quit()
 {
-	
+	delete sang_rusuo;
+	delete sang_rusuo_left_arm;
+	delete sang_rusuo_right_arm;
+	delete sang_rusuo_left_leg;
+	delete sang_rusuo_right_leg;
+	delete sang_rusuo_last;
+	delete last;
+	delete instance;
+
+	delete font;
+	delete font_sec;
+	delete font_third;
+	delete font_fourth;
+	delete font_fifth;
+	delete font_sixth;
+	delete font_seven;
+	delete font_eight;
+	delete font_nine;
+	delete font_ten;
+	delete font_eleven;
+	delete font_screenshot;
+	delete font_hierachy;
+	delete font_hierachy_sec;
+	delete font_hierachy_third;
+	delete font_hierachy_fourth;
+	delete font_hierachy_fifth;
+
+	delete animation;
+	delete font_animation;
+	delete font_animation_sec;
+	delete[] test_opt;
+	delete camera;
 }
 
 void Graphics::Toggle_Full_Screen(bool toggle)
@@ -221,36 +255,36 @@ void Graphics::Camera_Movement()
 {
 	if (input.Is_Key_Pressed(Keyboard::K_Right))
 	{
-		camera.Get_Cam_Trans().x -= 0.01f;
+		camera->Get_Cam_Trans().x -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Left))
 	{
-		camera.Get_Cam_Trans().x += 0.01f;
+		camera->Get_Cam_Trans().x += 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Up))
 	{
-		camera.Get_Cam_Trans().y -= 0.01f;
+		camera->Get_Cam_Trans().y -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::K_Down))
 	{
-		camera.Get_Cam_Trans().y += 0.01f;
+		camera->Get_Cam_Trans().y += 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::N))
 	{
-		camera.Get_Angle() -= 0.01f;
+		camera->Get_Angle() -= 0.01f;
 	}
 	if (input.Is_Key_Pressed(Keyboard::M))
 	{
-		camera.Get_Angle() += 0.01f;
+		camera->Get_Angle() += 0.01f;
 	}
 	if (input.Mouse_Wheel_Scroll() == -1)
 	{
-		camera.Get_Zoom() -= 0.05f;
+		camera->Get_Zoom() -= 0.05f;
 		input.Set_Mouse_Wheel(0, 0);
 	}
 	if (input.Mouse_Wheel_Scroll() == 1)
 	{
-		camera.Get_Zoom() += 0.05f;
+		camera->Get_Zoom() += 0.05f;
 		input.Set_Mouse_Wheel(0, 0);
 	}
 
@@ -281,7 +315,6 @@ void Graphics::Camera_Movement()
 
 		if (FAILED(hr))
 		{
-			std::cout << "u funked up" << std::endl;
 			return;
 		}
 
@@ -314,7 +347,7 @@ void Graphics::Camera_Movement()
 			color_temp.alpha = 255;
 			convert_color[i] = color_temp;
 		}
-		stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
+		//stbi_write_png("screenshot.png", width, height, 4, &convert_color[0], width * sizeof(Color4ub));
 	}
 
 	if (input.Is_Key_Triggered(Keyboard::P))
@@ -609,6 +642,14 @@ bool Graphics::Initialize_Scene()
 		}
 
 		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\ill2.png", nullptr, sanglusuo.GetAddressOf());
+
+		if (FAILED(hr))
+		{
+			std::cout << "fail to create wic texture ill from file" << std::endl;
+			return false;
+		}
+
+		hr = DirectX::CreateWICTextureFromFile(this->device.Get(), L"Data\\Texture\\simplerect.png", nullptr, sanglusuo.GetAddressOf());
 
 		if (FAILED(hr))
 		{

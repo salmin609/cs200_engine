@@ -7,54 +7,6 @@ static int indices_count = 0;
 
 Object::Object(Shape shape) :transform(MATRIX3::build_identity<float>()), scale(0, 0), translation(0, 0), rotation(0, 0), shape(shape)
 {
-    if(shape == Rectangle)
-    {
-        v = new Vertex[4];
-        v[0].pos = { -0.5f, -0.5f, 0.0f};
-        v[0].tex_coord = { 0.0f, 1.0f };
-        v[1].pos = { -0.5f, 0.5f, 0.0f };
-        v[1].tex_coord = { 0.0f, 0.0f };
-        v[2].pos = { 0.5f,  0.5f, 0.0f };
-        v[2].tex_coord = { 1.0f, 0.0f };
-        v[3].pos = { 0.5f,  -0.5f, 0.0f };
-        v[3].tex_coord = { 1.0f, 1.0f };
-
-        vertex_count = 4;
-        indices = new DWORD[6];
-        indices[0] = indices_count;
-        indices[1] = indices_count + 1;
-        indices[2] = indices_count + 2;
-        indices[3] = indices_count;
-        indices[4] = indices_count + 2;
-        indices[5] = indices_count + 3;
-
-        indices_index_count = 6;
-
-        indices_count += vertex_count;
-
-    }
-    else if(shape == Triangle)
-    {
-        v = new Vertex[3];
-        v[0].pos = { 2.0f, 0.5f,0.0f };
-        v[0].tex_coord = { 0.5f, 0.0f };
-        v[1].pos = { 1.5f,-0.5f, 0.0f };
-        v[1].tex_coord = { 0.0f,1.0f };
-        v[2].pos = { 2.5f, -0.5f, 0.0f };
-        v[2].tex_coord = { 1.0f,1.0f };
-        vertex_count = 3;
-
-        indices = new DWORD[3];
-
-        indices[0] = indices_count;
-        indices[1] = indices_count + 1;
-        indices[2] = indices_count + 2;
-
-        indices_index_count = 3;
-        
-        indices_count += vertex_count;
-    }
-        
 }
 
 void Object::Update()
@@ -280,7 +232,10 @@ bool Object::Initialize(ID3D11Device* device, ID3D11DeviceContext* device_contex
         indices[84] = 0;
         indices[85] = 29;
         indices[86] = 1;
+
         hr = this->index_buffer.Initialize(this->device, indices, 87);
+		delete[] v;
+		delete[] indices;
     }
 	if (this->name == "line")
 	{

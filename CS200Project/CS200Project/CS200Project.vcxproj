@@ -80,10 +80,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(SolutionDir)Includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)thirdparty\x64\Debug;$(LibraryPath)</LibraryPath>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <IncludePath>$(SolutionDir)Includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)thirdparty\x64\Release;$(LibraryPath)</LibraryPath>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -154,11 +156,9 @@
     <ClCompile Include="Animation_Object.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="BitmapFont.cpp" />
-    <ClCompile Include="Constant_Buffer.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameFont.cpp" />
     <ClCompile Include="Graphics.cpp" />
-    <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Instance_Object.cpp" />
     <ClCompile Include="main.cpp" />
@@ -166,8 +166,6 @@
     <ClCompile Include="Object.cpp" />
     <ClCompile Include="Object_Manager.cpp" />
     <ClCompile Include="Shaders.cpp" />
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -183,7 +181,6 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="GameFont.h" />
     <ClInclude Include="Graphics.h" />
-    <ClInclude Include="Image.hpp" />
     <ClInclude Include="Index_Buffer.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Instance_Object.h" />
@@ -191,8 +188,6 @@
     <ClInclude Include="Object.h" />
     <ClInclude Include="Object_Manager.h" />
     <ClInclude Include="Shaders.h" />
-    <ClInclude Include="Text.hpp" />
-    <ClInclude Include="Texture.hpp" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Vertex.h" />
     <ClInclude Include="Vertex_Buffer.h" />

@@ -2,6 +2,7 @@
 #include "Win32OS.h"
 #include "Input.h"
 #include "Application.h"
+#include "Graphics.h"
 
 
 struct PlatformImpl
@@ -151,6 +152,7 @@ void Window::PollEvents()
 void Window::CloseWindow()
 {
     pimpl->CloseWindow();
+	Graphics::Get_Graphic()->Should_Quit();
 }
 
 bool Window::ShouldQuit()

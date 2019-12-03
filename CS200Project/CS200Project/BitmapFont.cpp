@@ -22,22 +22,22 @@ bool BitmapFont::LoadFromFile(const std::filesystem::path& filename)
 			temp_string += '/';
 			temp_string += details.pageNames[i].substr(1, details.pageNames[i].size() - 2);
 
-			pageTextures.emplace_back();
-			pageTextures[i].LoadFromPNG(temp_string);
+			//pageTextures.emplace_back();
+			//pageTextures[i].LoadFromPNG(temp_string);
 		}
 		return true;
 	}
 	return false;
 }
 
-bool BitmapFont::LoadDefinition(const std::wstring& font_definition, std::vector<Texture> page_textures)
-{
-	std::wistringstream stream(font_definition);
-	if (!CanParseStream(stream))
-		return false;
-	pageTextures = std::move(page_textures);
-	return pageTextures.size() == details.pagesCount;
-}
+//bool BitmapFont::LoadDefinition(const std::wstring& font_definition, std::vector<Texture> page_textures)
+//{
+//	std::wistringstream stream(font_definition);
+//	if (!CanParseStream(stream))
+//		return false;
+//	pageTextures = std::move(page_textures);
+//	return pageTextures.size() == details.pagesCount;
+//}
 
 const BitmapFont::information& BitmapFont::GetInformation() const noexcept
 {
@@ -64,13 +64,13 @@ unsigned short BitmapFont::GetLineHeight() const noexcept
 	return details.lineHeight;
 }
 
-const Texture& BitmapFont::GetTexture(int page_index) const noexcept
-{
-	assert(page_index >= 0 && page_index < details.pagesCount);
-	assert(!pageTextures.empty());
-
-	return pageTextures.at(page_index);
-}
+//const Texture& BitmapFont::GetTexture(int page_index) const noexcept
+//{
+//	assert(page_index >= 0 && page_index < details.pagesCount);
+//	assert(!pageTextures.empty());
+//
+//	return pageTextures.at(page_index);
+//}
 
 bool BitmapFont::HasCharacter(wchar_t character_id) const noexcept
 {

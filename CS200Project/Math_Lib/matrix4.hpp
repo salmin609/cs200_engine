@@ -55,8 +55,8 @@ namespace MATRIX4
 	constexpr matrix4<T> build_scale(const vector2<T>& scale) noexcept;
 	template <typename T>
 	constexpr matrix4<T> build_translation(float translate_x, float translate_y) noexcept;
-	template <typename T>
-	constexpr matrix4<T> build_translation(const vector2<T>& translation) noexcept;
+	//template <typename T>
+	//constexpr matrix4<T> build_translation(const vector2<T>& translation) noexcept;
 }
 
 

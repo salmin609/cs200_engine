@@ -8,12 +8,15 @@
 #include "Vertex_Buffer.h"
 #include "Index_Buffer.h"
 #include "Constant_Buffer_Types.h"
-#include "Camera.h"
 #include "Constant_Buffer.h"
 #include "Object.h"
 #include "GameFont.h"
 #include "Timer.h"
 #include "Animation_Object.h"
+
+
+class Camera;
+
 
 enum State
 {
@@ -84,6 +87,7 @@ private:
 
     Microsoft::WRL::ComPtr<ID3D11SamplerState> sampler_state;
     Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> my_texture;
+	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> simple_texture;
 	
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo;
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> sanglusuo_arm;
@@ -94,7 +98,7 @@ private:
 	Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> animation_sprite;
 
 	
-    Camera camera;
+    Camera* camera;
     Object obj;
 	Object* sang_rusuo;
 	Object* sang_rusuo_left_arm;
@@ -119,7 +123,7 @@ private:
 	GameFont* font_eleven;
 
 	GameFont* font_screenshot;
-
+			
 	GameFont* font_hierachy;
 	GameFont* font_hierachy_sec;
 	GameFont* font_hierachy_third;

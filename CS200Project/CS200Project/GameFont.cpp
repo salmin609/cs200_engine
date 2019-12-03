@@ -34,7 +34,6 @@ void GameFont::Init(ID3D11Device* device, ID3D11DeviceContext* device_context, C
 	{
 		std::cout << "font load fail in 2" << std::endl;
 	}
-	std::cout << "font well?" << std::endl;
 	
 
 }
@@ -95,5 +94,7 @@ void GameFont::Set_Text(std::wstring text, float settingoffsety)
 	HRESULT hr = this->vertex_buffer.Initialize(this->device, v, text.size() * 6);
 	hr = this->index_buffer.Initialize(this->device, indices, text.size() * 6);
 
-	std::cout << "asd" << std::endl;
+	delete[] v;
+	delete[] indices;
+
 }

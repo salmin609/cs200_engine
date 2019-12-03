@@ -1,8 +1,6 @@
 #include <iostream>
-#include "vector3.hpp"
-#include "matrix3.hpp"
 #include "Engine.h"
-
+#include <crtdbg.h>
 
 
 int main()
@@ -19,13 +17,13 @@ int main()
 
     while(!engine.Get_Is_Finish())
     {
-        engine.Update();
-        engine.Render_Frame();
-        
-        //engine.Clear_Buffer(1.0f, 0.5f, 0.0f);
+		engine.Render_Frame();
         engine.End_Frame();
+		engine.Update();
     }
 
     engine.Close();
+	_CrtDumpMemoryLeaks();
+
     return 0;
 }

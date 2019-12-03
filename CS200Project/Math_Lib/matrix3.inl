@@ -127,7 +127,7 @@ constexpr matrix3<T> MATRIX3::transpose(const matrix3<T>& m) noexcept
 template <typename T>
 constexpr matrix3<T> MATRIX3::build_rotation(float angle_in_radians) noexcept
 {
-    matrix3   result_matrix;
+    matrix3<T>   result_matrix;
     const int zero_val = 0;
 
     result_matrix.column0.x = cos(angle_in_radians);

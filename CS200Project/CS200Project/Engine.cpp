@@ -58,12 +58,6 @@ void Engine::Init()
 
 void Engine::Update()
 {
-	//float dt = timer.Get_Milli_Seconds();
-
-
-	
-	//timer.Restart();
-	
     application->Update();
     Object_Manager::Get_ObjectManager()->Update();
 	Graphics::Get_Graphic()->Camera_Movement();
@@ -74,6 +68,14 @@ void Engine::Update()
 
 void Engine::Close()
 {
+	delete Graphics::Get_Graphic();
+
+	for(int i = 0 ; i < Object_Manager::Get_ObjectManager()->Get_Obj_Container().size(); i++)
+	{
+		delete Object_Manager::Get_ObjectManager()->Get_Obj_Container()[i];
+	}
+	
+	delete Object_Manager::Get_ObjectManager();
 }
 
 void Engine::Render_Frame()
